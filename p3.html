@@ -1,79 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* 1. Chameleon Animated Background */
-        @keyframes chameleonGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* 1. Midnight Background + Diagonal Scanning Ray */
+        @keyframes rayMove {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
         }
 
         .p-body-wrap { 
             min-height: 100vh; 
-            /* Multi-color gradient */
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: chameleonGradient 15s ease infinite;
+            background-color: #020617; 
+            /* THE RAY: A shining beam that moves diagonally */
+            background-image: 
+                linear-gradient(135deg, transparent 0%, rgba(0, 242, 255, 0.05) 40%, rgba(0, 242, 255, 0.2) 50%, rgba(0, 242, 255, 0.05) 60%, transparent 100%);
+            background-size: 300% 300%;
+            animation: rayMove 10s ease-in-out infinite;
             padding: 8vh 20px 60px 20px; 
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start; 
-            font-family: 'Outfit', sans-serif;
+            font-family: 'JetBrains Mono', monospace;
             box-sizing: border-box;
-            color: #ffffff;
+            color: #00f2ff;
         }
 
-        /* 2. Glassmorphism Container */
+        /* 2. Cyber HUD Container */
         .p-container { 
             max-width: 400px; 
             width: 100%; 
-            background: rgba(255, 255, 255, 0.1); /* Semi-transparent */
-            backdrop-filter: blur(15px); /* The "Glass" effect */
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             padding: 45px 30px; 
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 24px; /* Rounded for a "Pro" feel */
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            border-radius: 4px; /* Sharper edges for sci-fi theme */
             text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
             box-sizing: border-box;
+            position: relative;
         }
 
-        /* 3. Rounded Profile Image */
+        /* 3. Holographic Profile Image */
         .p-pfp { 
             width: 110px; 
             height: 110px; 
-            border-radius: 50%; /* Circle image */
+            border-radius: 50%; 
             margin: 0 auto 30px; 
             object-fit: cover; 
-            border: 3px solid #ffffff;
-            display: none;
+            display: block; /* Removed display:none so image is visible when synced */
+            border: none;
+            filter: drop-shadow(0 0 10px #00f2ff);
         }
 
-        /* 4. Text Styling */
+        /* 4. Sci-Fi Typography */
         .p-name { 
-            font-size: clamp(1.5rem, 6vw, 1.8rem); 
-            font-weight: 800; 
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(1.8rem, 7vw, 2.2rem); 
+            font-weight: 700; 
             color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 5px;
             margin: 0 0 10px 0;
-            word-wrap: break-word;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
         }
 
         .p-bio { 
-            font-size: 0.95rem; 
-            color: rgba(255, 255, 255, 0.9); 
+            font-size: 0.85rem; 
+            color: #67e8f9; 
             line-height: 1.6; 
             margin-bottom: 35px;
             font-weight: 300;
+            text-transform: uppercase;
         }
 
-        /* 5. Glass Glow Buttons */
+        /* 5. Cyber Skew Main Buttons */
         .p-links { 
             display: flex; 
             flex-direction: column; 
@@ -81,59 +89,62 @@
         }
 
         .p-link-btn { 
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #ffffff; 
+            background: rgba(0, 242, 255, 0.05);
+            border: 1px solid #00f2ff;
+            color: #00f2ff; 
             padding: 16px; 
             text-decoration: none; 
             font-weight: 500; 
-            border-radius: 12px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: block;
         }
 
         .p-link-btn:hover { 
-            background: rgba(255, 255, 255, 1);
-            color: #e73c7e; /* Text takes color from the gradient theme */
-            transform: scale(1.03);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background: #00f2ff;
+            color: #020617; 
+            transform: skewX(-10deg) translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
         }
 
-        /* 6. Social Icon Links */
+        /* 6. Bracketed Social Links */
         .p-socials { 
-    margin-top: 40px; 
-    display: flex; 
-    justify-content: center; 
-    gap: 12px; 
-    flex-wrap: wrap;
-}
+            margin-top: 40px; 
+            display: flex; 
+            justify-content: center; 
+            gap: 12px; 
+            flex-wrap: wrap;
+        }
 
-.p-social-icon { 
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent */
-    padding: 8px 16px;
-    border-radius: 50px; /* Makes it a pill */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px); /* Frosted glass effect */
-    text-decoration: none; /* Remove that old underline */
-    color: #ffffff;
-    font-size: 0.7rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
+        .p-social-icon { 
+            text-decoration: none; 
+            color: #ffffff;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
 
-.p-social-icon:hover { 
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px); /* Makes it feel alive */
-}
+        /* The Brackets */
+        .p-social-icon::before { content: "[ "; color: #00f2ff; }
+        .p-social-icon::after { content: " ]"; color: #00f2ff; }
+
+        .p-social-icon:hover { 
+            opacity: 1;
+            text-shadow: 0 0 8px #00f2ff;
+            transform: translateY(-2px);
+        }
         
         /* 7. Video Area */
-        .p-yt { margin-top: 30px; display: none; }
+        .p-yt { margin-top: 30px; }
         .p-yt iframe { 
             width: 100%; 
             aspect-ratio: 16 / 9; 
-            border: none; 
-            border-radius: 15px; 
+            border: 1px solid rgba(0, 242, 255, 0.2); 
+            border-radius: 4px; 
         }
     </style>
 </head>
@@ -149,7 +160,4 @@
         </div>
     </div>
 </body>
-
 </html>
-
-
