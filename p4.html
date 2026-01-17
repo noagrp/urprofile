@@ -3,90 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* 1. Cinematic Background & Animated Scanlines */
+        /* 1. Midnight Background & Diagonal Scanning Ray */
+        @keyframes rayMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
         .p-body-wrap { 
             min-height: 100vh; 
             background-color: #020617; 
-            background-image: 
-                radial-gradient(circle at 0% 0%, rgba(0, 242, 255, 0.15) 0%, transparent 60%),
-                linear-gradient(135deg, rgba(0, 242, 255, 0.05) 0%, rgba(2, 6, 23, 1) 50%);
-            padding: 8vh 20px 60px 20px; 
+            /* THE RAY: A shining beam that moves diagonally */
+            background-image: linear-gradient(
+                135deg, 
+                transparent 0%, 
+                rgba(0, 242, 255, 0.05) 40%, 
+                rgba(0, 242, 255, 0.2) 50%, 
+                rgba(0, 242, 255, 0.05) 60%, 
+                transparent 100%
+            );
+            background-size: 300% 300%;
+            animation: rayMove 10s ease-in-out infinite;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start; 
             font-family: 'JetBrains Mono', monospace;
             box-sizing: border-box;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 60px;
             color: #00f2ff;
-            overflow-x: hidden;
         }
 
-        /* 2. Cyber HUD Container with Corner Accents */
+        /* 2. Cyber HUD Container */
         .p-container { 
             max-width: 400px; 
             width: 100%; 
             background: rgba(2, 6, 23, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             padding: 45px 30px; 
-            border: 1px solid rgba(0, 242, 255, 0.2);
-            border-radius: 2px;
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            border-radius: 4px;
             text-align: center;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 242, 255, 0.05);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
             box-sizing: border-box;
+            margin-top: 40px;
             position: relative;
         }
 
-        /* Animated Scanline Overlay */
-        .p-container::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(
-                to bottom,
-                transparent 50%,
-                rgba(0, 242, 255, 0.03) 50%
-            );
-            background-size: 100% 4px;
-            pointer-events: none;
-            z-index: 10;
-            animation: scanline 10s linear infinite;
-        }
-
-        @keyframes scanline {
-            from { background-position: 0 0; }
-            to { background-position: 0 100%; }
-        }
-
-        /* 3. SCI-FI PROFILE PHOTO (Hologram Flicker) */
+        /* 3. Holographic Profile Image */
         .p-pfp { 
-            width: 120px; 
-            height: 120px; 
+            width: 110px; 
+            height: 110px; 
             border-radius: 50%; 
-            margin: 0 auto 25px; 
+            margin: 0 auto 30px; 
             object-fit: cover; 
-            display: block;
-            border: none; 
-            filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.6)) grayscale(0.2);
-            position: relative;
-            z-index: 2;
-            animation: pfp-flicker 4s infinite;
+            object-position: top;
+            display: none; /* Managed by your main script */
+            border: 1px solid rgba(0, 242, 255, 0.5);
+            filter: drop-shadow(0 0 10px #00f2ff);
         }
 
-        @keyframes pfp-flicker {
-            0%, 100% { opacity: 1; filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.6)); }
-            95% { opacity: 1; }
-            96% { opacity: 0.7; filter: contrast(1.5) brightness(1.2); }
-            97% { opacity: 1; }
-        }
-
-        /* 4. Glitch Typography */
+        /* 4. Sci-Fi Typography */
         .p-name { 
             font-family: 'Rajdhani', sans-serif;
             font-size: clamp(1.8rem, 7vw, 2.2rem); 
@@ -95,95 +79,91 @@
             text-transform: uppercase;
             letter-spacing: 5px;
             margin: 0 0 10px 0;
-            text-shadow: 2px 2px rgba(0, 242, 255, 0.5);
-            position: relative;
-            z-index: 2;
-        }
-
-        .p-name:hover {
-            animation: glitch 0.3s linear infinite;
-        }
-
-        @keyframes glitch {
-            0% { text-shadow: 2px 0 #ff00c1, -2px 0 #00fff9; transform: translate(1px, 1px); }
-            25% { text-shadow: -2px 0 #ff00c1, 2px 0 #00fff9; transform: translate(-1px, -1px); }
-            50% { text-shadow: 2px 0 #ff00c1, -2px 0 #00fff9; transform: translate(-1px, 1px); }
-            100% { text-shadow: 2px 0 #ff00c1, -2px 0 #00fff9; transform: translate(1px, -1px); }
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
+            word-wrap: break-word;
         }
 
         .p-bio { 
-            font-size: 0.75rem; 
+            font-size: 0.85rem; 
             color: #67e8f9; 
             line-height: 1.6; 
             margin-bottom: 35px;
             font-weight: 300;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 2;
-            opacity: 0.8;
+            border-top: 1px solid rgba(0, 242, 255, 0.1);
+            padding-top: 20px;
+            word-wrap: break-word;
         }
 
-        /* 5. Cyber Buttons */
+        /* 5. Cyber Outline Buttons */
         .p-links { 
             display: flex; 
             flex-direction: column; 
-            gap: 12px; 
-            position: relative;
-            z-index: 2;
+            gap: 15px; 
         }
 
         .p-link-btn { 
+            background: rgba(0, 242, 255, 0.05);
             border: 1px solid #00f2ff;
-            background: rgba(0, 242, 255, 0.03);
             color: #00f2ff; 
-            padding: 14px; 
+            padding: 16px; 
             text-decoration: none; 
             font-weight: 500; 
-            font-size: 0.75rem;
-            letter-spacing: 3px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            transition: all 0.2s ease-out;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            word-wrap: break-word;
+            display: block;
         }
 
         .p-link-btn:hover { 
             background: #00f2ff;
             color: #020617; 
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.8);
             transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
         }
 
-        /* 6. Social Brackets */
+        /* 6. Bracketed Social Links (Fixed Wrapping) */
         .p-socials { 
             margin-top: 40px; 
             display: flex; 
             justify-content: center; 
-            gap: 15px; 
-            position: relative;
-            z-index: 2;
+            gap: 12px; 
+            flex-wrap: wrap;
         }
 
         .p-social-icon { 
-            color: #ffffff; 
             text-decoration: none; 
-            font-size: 0.65rem; 
+            color: #ffffff;
+            font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
             opacity: 0.6;
             transition: 0.3s;
+            white-space: nowrap; /* Keeps bracket and text on same line */
         }
+
+        .p-social-icon::before { content: "[ "; color: #00f2ff; }
+        .p-social-icon::after { content: " ]"; color: #00f2ff; }
 
         .p-social-icon:hover { 
             opacity: 1;
-            color: #00f2ff;
             text-shadow: 0 0 8px #00f2ff;
         }
+        
+        /* 7. Video Area */
+        .p-yt {
+            margin-top: 30px;
+            display: none; /* Managed by your main script */
+        }
 
-        .p-social-icon::before { content: "[ "; }
-        .p-social-icon::after { content: " ]"; }
-
+        .p-yt iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -202,4 +182,3 @@
 
 </body>
 </html>
-
