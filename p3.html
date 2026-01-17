@@ -105,7 +105,7 @@
     margin-top: 40px; 
     display: flex; 
     justify-content: center; 
-    gap: 12px; /* Tighter gap for pills */
+    gap: 12px; 
     flex-wrap: wrap;
 }
 
@@ -117,11 +117,13 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     
-    /* The Pill Styling */
+    /* The Glass Pill Look */
     background: rgba(255, 255, 255, 0.1);
-    padding: 8px 16px;
-    border-radius: 50px; /* Perfect circle ends */
+    padding: 10px 18px;
+    border-radius: 50px; 
     border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     
     transition: all 0.3s ease;
 }
@@ -129,7 +131,8 @@
 .p-social-icon:hover { 
     background: rgba(255, 255, 255, 0.25);
     border-color: rgba(255, 255, 255, 0.5);
-    transform: translateY(-3px); /* Subtle float up */
+    transform: translateY(-3px); /* Makes it pop on hover */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
         
         /* 7. Video Area */
@@ -156,3 +159,4 @@
 </body>
 
 </html>
+
