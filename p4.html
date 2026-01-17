@@ -13,7 +13,6 @@
         .p-body-wrap { 
             min-height: 100vh; 
             background-color: #020617; 
-            /* THE SHINE: Diagonal beam from top-left to bottom-right */
             background-image: 
                 radial-gradient(circle at 0% 0%, rgba(0, 242, 255, 0.18) 0%, transparent 60%),
                 linear-gradient(135deg, rgba(0, 242, 255, 0.05) 0%, rgba(2, 6, 23, 1) 50%);
@@ -55,7 +54,23 @@
             z-index: 1;
         }
 
-        /* 3. High-Tech Typography */
+        /* 3. SCI-FI PROFILE PHOTO (No Border, Neon Glow) */
+        .p-pfp { 
+            width: 120px; 
+            height: 120px; 
+            border-radius: 50%; 
+            margin: 0 auto 25px; 
+            object-fit: cover; 
+            display: block; /* Shown */
+            /* Removed border for a "hologram" look */
+            border: none; 
+            /* Added glow filter */
+            filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.8));
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 4. High-Tech Typography */
         .p-name { 
             font-family: 'Rajdhani', sans-serif;
             font-size: clamp(1.8rem, 7vw, 2.2rem); 
@@ -80,7 +95,7 @@
             z-index: 2;
         }
 
-        /* 4. Neon Link Modules with SKEW */
+        /* 5. Neon Link Modules */
         .p-links { 
             display: flex; 
             flex-direction: column; 
@@ -99,7 +114,6 @@
             font-size: 0.8rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            /* Cubic-bezier for a snappy "pop" when it skews */
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -107,11 +121,10 @@
             background: #00f2ff;
             color: #020617; 
             box-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
-            /* THE SKEW: Tilts the button like italics */
             transform: skewX(-10deg) translateY(-2px);
         }
 
-        /* 5. Balanced Social Brackets (No Skew) */
+        /* 6. Social Brackets */
         .p-socials { 
             margin-top: 40px; 
             display: flex; 
@@ -142,42 +155,29 @@
             opacity: 1;
             color: #ffffff;
             text-shadow: 0 0 10px #00f2ff;
-            /* No skew here to keep socials readable */
         }
-
-        /* 7. Video Area */
-        .p-yt { margin-top: 30px; display: none; }
-        .p-yt iframe { 
-            width: 100%; 
-            aspect-ratio: 16 / 9; 
-            border: none; 
-            border-radius: 15px; 
-        }
-
-        /* 8. Rounded Profile Image */
-        .p-pfp { 
-            width: 110px; 
-            height: 110px; 
-            border-radius: 50%; /* Circle image */
-            margin: 0 auto 30px; 
-            object-fit: cover; 
-            border: 3px solid #ffffff;
-            display: none;
-        }
-        
     </style>
 </head>
 <body>
     <div class="p-body-wrap">
         <div class="p-container">
-            <h1 class="p-name"></h1>
-            <div class="p-bio"></div>
+            <img src="https://r.jina.ai/i/0f52d2f703554e2496881c6204c3b747" alt="Agent Echo" class="p-pfp">
             
-            <div class="p-links"></div>
-            <div class="p-socials"></div>
+            <h1 class="p-name">Agent Echo</h1>
+            <div class="p-bio">System Operative // Neural Interface Specialist</div>
+            
+            <div class="p-links">
+                <a href="#" class="p-link-btn">Access Datastream</a>
+                <a href="#" class="p-link-btn">Neural Archive</a>
+                <a href="#" class="p-link-btn">Directive Hub</a>
+            </div>
+
+            <div class="p-socials">
+                <a href="#" class="p-social-icon">Github</a>
+                <a href="#" class="p-social-icon">Twitter</a>
+                <a href="#" class="p-social-icon">Matrix</a>
+            </div>
         </div>
     </div>
 </body>
 </html>
-
-
