@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        :root { --primary-text: #111827; --secondary-text: #4b5563; --btn-bg: #ffffff; --btn-border: #e5e7eb; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f9fafb; margin: 0; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; color: var(--primary-text); }
+        
+        .container { max-width: 480px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        
+        /* Identity Section */
+        #pfp { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin-bottom: 16px; display: none; border: 2px solid #fff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        #name { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; text-align: center; }
+        #bio { font-size: 0.95rem; line-height: 1.6; color: var(--secondary-text); text-align: justify; text-justify: inter-word; margin-bottom: 24px; width: 100%; }
+
+        /* Video Section */
+        #yt-container { width: 100%; aspect-ratio: 16/9; margin-bottom: 24px; display: none; border-radius: 12px; overflow: hidden; }
+        #yt-container iframe { width: 100%; height: 100%; border: none; }
+
+        /* Links Section */
+        .links-area { width: 100%; display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        .link-btn { width: 100%; padding: 16px; background: var(--btn-bg); border: 1px solid var(--btn-border); border-radius: 12px; text-decoration: none; color: var(--primary-text); font-weight: 500; text-align: center; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .link-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-color: #d1d5db; }
+
+        /* Socials & Contact */
+        .social-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 10px; }
+        .social-icon { color: var(--secondary-text); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+        .social-icon:hover { color: #2563eb; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img id="pfp" src="" alt="Profile Picture">
+    <h1 id="name"></h1>
+    <div id="bio"></div>
+
+    <div id="yt-container"></div>
+
+    <div class="links-area" id="links-list">
+        </div>
+
+    <div class="social-grid" id="socials">
+        </div>
+</div>
+
+<script>
+    // 1. Get data from local storage
+    const rawData = sessionStorage.getItem('profileData');
+    if (!rawData) {
+        window.location.href = "index.html"; // Redirect back if no data
+    }
+    const d = JSON.parse(rawData);
+
+    // 2. Fill Identity
+    if (d.name) document.getElementById('name').innerText = d.name;
+    if (d.bio) document.getElementById('bio').innerText = d.bio;
+    if (d.pfp) {
+        const pfpImg = document.getElementById('pfp');
+        pfpImg.src = d.pfp;
+        pfpImg.style.display = 'block';
+    }
+
+    // 3. Handle YouTube
+    if (d.yt_video) {
+        const ytId = d.yt_video.includes('v=') ? d.yt_video.split('v=')[1].split('&')[0] : d.yt_video;
+        document.getElementById('yt-container').innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}" allowfullscreen></iframe>`;
+        document.getElementById('yt-container').style.display = 'block';
+    }
+
+    // 4. Paint Buttons (1-5)
+    const linksList = document.getElementById('links-list');
+    for (let i = 1; i <= 5; i++) {
+        const text = d[`link${i}_text`];
+        const url = d[`link${i}_url`];
+        if (text && url) {
+            const a = document.createElement('a');
+            a.className = 'link-btn';
+            a.href = url.startsWith('http') ? url : `https://${url}`;
+            a.target = '_blank';
+            a.innerText = text;
+            linksList.appendChild(a);
+        }
+    }
+
+    // 5. Paint Socials & Contact
+    const socialsDiv = document.getElementById('socials');
+    const socialPlatforms = [
+        { key: 'ig', label: 'Instagram', url: 'https://instagram.com/' },
+        { key: 'wa', label: 'WhatsApp', url: 'https://wa.me/' },
+        { key: 'fb', label: 'Facebook', url: 'https://facebook.com/' },
+        { key: 'li', label: 'LinkedIn', url: 'https://linkedin.com/in/' },
+        { key: 'tw', label: 'X (Twitter)', url: 'https://twitter.com/' },
+        { key: 'tel', label: 'Call', url: 'tel:' },
+        { key: 'email', label: 'Email', url: 'mailto:' }
+    ];
+
+    socialPlatforms.forEach(platform => {
+        if (d[platform.key]) {
+            const link = document.createElement('a');
+            link.className = 'social-icon';
+            link.href = platform.url + d[platform.key];
+            link.innerText = platform.label;
+            socialsDiv.appendChild(link);
+        }
+    });
+</script>
+
+</body>
+</html>

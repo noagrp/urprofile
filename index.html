@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Creator & Editor</title>
+    <style>
+        :root { --primary: #2563eb; --bg: #f8fafc; --text: #1e293b; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        .container { max-width: 500px; width: 100%; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        h1, h2 { text-align: center; margin-bottom: 20px; }
+        .section { border-bottom: 1px solid #e2e8f0; padding-bottom: 20px; margin-bottom: 20px; }
+        
+        label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
+        input, textarea, select { width: 100%; padding: 12px; margin-bottom: 5px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-size: 1rem; }
+        .hint { font-size: 0.75rem; color: #64748b; margin-bottom: 15px; display: block; }
+        
+        .btn { width: 100%; padding: 14px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 1rem; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: #1d4ed8; }
+        .btn-outline { background: transparent; border: 1px solid var(--primary); color: var(--primary); margin-top: 10px; }
+        
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        #status-msg { text-align: center; font-weight: bold; margin-bottom: 15px; padding: 10px; border-radius: 5px; display: none; }
+        .success { background: #dcfce7; color: #166534; }
+        .error { background: #fee2e2; color: #991b1b; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Profile Manager</h1>
+    <div id="status-msg"></div>
+
+    <div class="section" id="login-section">
+        <h2>Edit Existing Profile</h2>
+        <label>Your Slug</label>
+        <input type="text" id="login-slug" placeholder="e.g. john-doe">
+        <label>Password</label>
+        <input type="password" id="login-pass" placeholder="Enter password">
+        <button class="btn btn-primary" onclick="loadProfile()">Load Profile for Editing</button>
+    </div>
+
+    <div id="main-form">
+        <h2 id="form-title">Create New Profile</h2>
+        
+        <label>Custom URL Slug</label>
+        <input type="text" id="slug" maxlength="30" placeholder="my-awesome-link">
+        <span class="hint">No spaces or symbols. Only letters, numbers, and dashes.</span>
+
+        <label>Password</label>
+        <input type="text" id="pass" maxlength="20">
+        <span class="hint">Required to edit this profile later.</span>
+
+        <label>Design Template</label>
+        <select id="temp">
+            <option value="p1">Design 01 - Minimal</option>
+            <option value="p2">Design 02 - Dark Mode</option>
+            <option value="p3">Design 03 - Professional</option>
+            <option value="p4">Design 04 - Artistic</option>
+            <option value="p5">Design 05 - Modern</option>
+        </select>
+        <span class="hint">Select the style for your profile.</span>
+
+        <hr>
+
+        <label>Display Name</label>
+        <input type="text" id="name" maxlength="30" placeholder="e.g. Alex Smith">
+        
+        <label>Bio (Center-Justified)</label>
+        <textarea id="bio" maxlength="500" rows="4" placeholder="Tell the world about yourself..."></textarea>
+        <span class="hint">Max 500 characters. HTML is disabled for security.</span>
+
+        <label>Profile Image URL</label>
+        <input type="text" id="pfp" placeholder="https://example.com/image.jpg">
+
+        <label>YouTube Video ID</label>
+        <input type="text" id="yt_video" placeholder="e.g. dQw4w9WgXcQ">
+        <span class="hint">The code at the end of the video link.</span>
+
+        <hr>
+
+        <h3>Action Buttons (Max 5)</h3>
+        <div class="row"><label>Button 1 Text</label><label>Button 1 URL</label></div>
+        <div class="row">
+            <input type="text" id="link1_text" maxlength="40" placeholder="Website">
+            <input type="text" id="link1_url" placeholder="https://...">
+        </div>
+
+        <div class="row"><label>Button 2 Text</label><label>Button 2 URL</label></div>
+        <div class="row">
+            <input type="text" id="link2_text" maxlength="40">
+            <input type="text" id="link2_url">
+        </div>
+        
+        <div id="extra-links" style="display:none;">
+            <div class="row">
+                <input type="text" id="link3_text" maxlength="40"><input type="text" id="link3_url">
+                <input type="text" id="link4_text" maxlength="40"><input type="text" id="link4_url">
+                <input type="text" id="link5_text" maxlength="40"><input type="text" id="link5_url">
+            </div>
+        </div>
+        <button class="btn btn-outline" id="show-more" onclick="document.getElementById('extra-links').style.display='block'; this.style.display='none'">+ Add More Buttons</button>
+
+        <hr>
+
+        <h3>Contact & Socials</h3>
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="hello@example.com">
+        
+        <label>Phone / WhatsApp Number</label>
+        <input type="text" id="tel" placeholder="e.g. 60123456789">
+        <span class="hint">Include country code, numbers only.</span>
+
+        <div class="row">
+            <div><label>Instagram ID</label><input type="text" id="ig" placeholder="username"></div>
+            <div><label>Facebook ID</label><input type="text" id="fb"></div>
+        </div>
+
+        <button class="btn btn-primary" style="margin-top: 30px;" onclick="submitData()">Save Profile</button>
+        <button class="btn btn-outline" onclick="window.location.reload()">Clear / New</button>
+    </div>
+</div>
+
+<script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbwmSwq2K_xX6qCWfIZNHzeJzTgUuhoX7nJooe3ZWv00NhVed-q7LBxegHzKKhuKGcPmZA/exec";
+
+    // Auto-format slug: spaces to dashes
+    document.getElementById('slug').addEventListener('input', function(e) {
+        this.value = this.value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    });
+
+    async function loadProfile() {
+        const u = document.getElementById('login-slug').value;
+        const p = document.getElementById('login-pass').value;
+        showStatus("Fetching profile...", "");
+
+        try {
+            const response = await fetch(`${API_URL}?u=${u}&p=${p}`);
+            const result = await response.json();
+
+            if (result.success && result.mode === "edit") {
+                const d = result.data;
+                // Fill the form
+                const fields = ['slug','pass','temp','name','bio','pfp','yt_video','link1_text','link1_url','link2_text','link2_url','link3_text','link3_url','link4_text','link4_url','link5_text','link5_url','ig','wa','fb','li','tw','tel','email'];
+                fields.forEach(f => { if(document.getElementById(f)) document.getElementById(f).value = d[f] || ""; });
+                
+                document.getElementById('form-title').innerText = "Editing: " + d.slug;
+                document.getElementById('login-section').style.display = "none";
+                showStatus("Profile Loaded!", "success");
+            } else {
+                showStatus(result.error || "Incorrect Slug or Password", "error");
+            }
+        } catch (e) {
+            showStatus("Error connecting to database", "error");
+        }
+    }
+
+    async function submitData() {
+        const fields = ['slug','pass','temp','name','bio','pfp','yt_video','link1_text','link1_url','link2_text','link2_url','link3_text','link3_url','link4_text','link4_url','link5_text','link5_url','ig','wa','fb','li','tw','tel','email'];
+        let payload = {};
+        fields.forEach(f => { if(document.getElementById(f)) payload[f] = document.getElementById(f).value; });
+
+        if(!payload.slug || !payload.pass) {
+            showStatus("Slug and Password are required!", "error");
+            return;
+        }
+
+        showStatus("Saving to database...", "");
+
+        try {
+            const response = await fetch(API_URL, {
+                method: "POST",
+                body: JSON.stringify(payload)
+            });
+            const result = await response.json();
+            if(result.success) {
+                showStatus(result.message, "success");
+                setTimeout(() => { window.scrollTo(0,0); }, 1000);
+            } else {
+                showStatus(result.error, "error");
+            }
+        } catch (e) {
+            showStatus("Error saving data", "error");
+        }
+    }
+
+    function showStatus(msg, type) {
+        const s = document.getElementById('status-msg');
+        s.innerText = msg;
+        s.className = type;
+        s.style.display = "block";
+    }
+</script>
+</body>
+</html>
