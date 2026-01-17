@@ -1,26 +1,31 @@
 <style>
     /* 1. Ultra-Clean Background */
     .p-body-wrap { 
-        min-height: 100vh; 
-        background-color: #ffffff; /* Pure white background */
-        padding: 60px 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif;
-    }
+    min-height: 100vh; 
+    background-color: #fcfcfc; 
+    /* Increased top padding (100px) creates the gap from the top */
+    padding: 100px 20px 60px 20px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* This ensures that if content is short, it doesn't try to center vertically */
+    justify-content: flex-start; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    box-sizing: border-box;
+}
 
     /* 2. The Bordered Container */
     .p-container { 
-        max-width: 400px; 
-        width: 100%; 
-        background: #ffffff; 
-        padding: 40px 30px; 
-        /* Sharp thin border instead of heavy shadow */
-        border: 1.5px solid #000000; 
-        border-radius: 0px; /* Square corners look more "Design Agency" pro */
-        text-align: center;
-    }
+    max-width: 400px; 
+    width: 100%; 
+    background: #ffffff; 
+    padding: 45px 30px; 
+    border: 2px solid #000000; 
+    border-radius: 4px; 
+    text-align: center;
+    /* Adds a nice shadow to make the floating effect pop */
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.05); 
+}
 
     /* 3. Profile Image with matching border */
     .p-pfp { 
@@ -113,3 +118,4 @@
         <div class="p-socials"></div>
     </div>
 </div>
+
