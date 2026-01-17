@@ -98,14 +98,18 @@
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Snappy tech transition */;
         }
 
         .p-link-btn:hover { 
-            background: #00f2ff;
-            color: #020617; 
-            box-shadow: 0 0 20px #00f2ff;
-        }
+    background: #00f2ff;
+    color: #020617; 
+    box-shadow: 0 0 20px #00f2ff;
+    
+    /* THE TILT: -10deg tilts it to the right (italic feel) 
+       Changing it to 10deg tilts it to the left */
+    transform: skewX(-10deg) scale(1.02); 
+}
 
         /* 5. Social Text HUD */
         .p-socials { 
@@ -163,4 +167,5 @@
     </div>
 </body>
 </html>
+
 
