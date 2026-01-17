@@ -126,31 +126,27 @@
 
         /* 6. Bracketed Social Links (Fixed Wrapping) */
         .p-socials { 
-            margin-top: 40px; 
-            display: flex; 
-            justify-content: center; 
-            gap: 12px; 
-            flex-wrap: wrap;
-        }
+    margin-top: 40px; 
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; /* Reduced gap slightly for mobile screens */
+    flex-wrap: wrap; /* Allows the whole [LINK] to jump to next line */
+}
 
-        .p-social-icon { 
-            text-decoration: none; 
-            color: #ffffff;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            opacity: 0.6;
-            transition: 0.3s;
-            white-space: nowrap; /* Keeps bracket and text on same line */
-        }
+.p-social-icon { 
+    color: #00f2ff; /* Using your scifi cyan */
+    text-decoration: none; 
+    font-size: 0.75rem; 
+    font-weight: 700;
+    text-transform: uppercase;
+    /* MAGIC FIX BELOW */
+    white-space: nowrap; /* Prevents the bracket from breaking away from the text */
+    display: inline-block;
+}
 
-        .p-social-icon::before { content: "[ "; color: #00f2ff; }
-        .p-social-icon::after { content: " ]"; color: #00f2ff; }
-
-        .p-social-icon:hover { 
-            opacity: 1;
-            text-shadow: 0 0 8px #00f2ff;
-        }
+/* Ensure brackets are part of the no-wrap unit */
+.p-social-icon::before { content: "[ "; }
+.p-social-icon::after { content: " ]"; }
         
         /* 7. Video Area */
         .p-yt {
@@ -182,3 +178,4 @@
 
 </body>
 </html>
+
