@@ -103,22 +103,46 @@
         <button class="btn btn-outline" id="show-more" onclick="document.getElementById('extra-links').style.display='block'; this.style.display='none'">+ Add More Buttons</button>
 
         <hr>
+<h3>Contact & Socials</h3>
+<span class="hint">Leave blank to hide the icon on your profile.</span>
 
-        <h3>Contact & Socials</h3>
-        <label>Email Address</label>
-        <input type="email" id="email" placeholder="hello@example.com">
-        
-        <label>Phone / WhatsApp Number</label>
-        <input type="text" id="tel" placeholder="e.g. 60123456789">
-        <span class="hint">Include country code, numbers only.</span>
+<div class="row">
+    <div>
+        <label>Email</label>
+        <input type="email" id="email" placeholder="hello@mail.com">
+    </div>
+    <div>
+        <label>Phone / WhatsApp</label>
+        <input type="text" id="tel" placeholder="60123456789">
+    </div>
+</div>
 
-        <div class="row">
-            <div><label>Instagram ID</label><input type="text" id="ig" placeholder="username"></div>
-            <div><label>Facebook ID</label><input type="text" id="fb"></div>
-        </div>
+<div class="row">
+    <div>
+        <label>Instagram Username</label>
+        <input type="text" id="ig" placeholder="johndoe">
+    </div>
+    <div>
+        <label>WhatsApp Link ID</label>
+        <input type="text" id="wa" placeholder="60123456789">
+    </div>
+</div>
 
-        <button class="btn btn-primary" style="margin-top: 30px;" onclick="submitData()">Save Profile</button>
-        <button class="btn btn-outline" onclick="window.location.reload()">Clear / New</button>
+<div class="row">
+    <div>
+        <label>Facebook Username</label>
+        <input type="text" id="fb" placeholder="john.doe.123">
+    </div>
+    <div>
+        <label>Twitter/X Username</label>
+        <input type="text" id="tw" placeholder="johndoe">
+    </div>
+</div>
+
+<div class="row">
+    <div>
+        <label>LinkedIn Username</label>
+        <input type="text" id="li" placeholder="in/johndoe">
     </div>
 </div>
 
@@ -193,4 +217,5 @@
     }
 </script>
 </body>
+
 </html>
