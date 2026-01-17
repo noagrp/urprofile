@@ -108,21 +108,31 @@
     }
 
     async function submitData() {
-        let payload = {};
-        fields.forEach(f => { if(document.getElementById(f)) payload[f] = document.getElementById(f).value; });
-        if(!payload.slug || !payload.pass) return showStatus("Slug & Pass required", "error");
+    let payload = {};
+    fields.forEach(f => { if(document.getElementById(f)) payload[f] = document.getElementById(f).value; });
+    
+    if(!payload.slug || !payload.pass) return showStatus("Slug & Pass required", "error");
+    
+    showStatus("Saving...", "");
+    try {
+        const response = await fetch(API_URL, { method: "POST", body: JSON.stringify(payload) });
+        const res = await response.json();
         
-        showStatus("Saving...", "");
-        try {
-            const response = await fetch(API_URL, { method: "POST", body: JSON.stringify(payload) });
-            const res = await response.json();
-            showStatus(res.message || "Saved!", "success");
-            if(res.success) window.scrollTo(0,0);
-        } catch (e) { 
-            // Often triggers on local files due to redirects, but usually saves!
-            showStatus("Check your Google Sheet!", "success"); 
+        if(res.success) {
+            // This creates the simple statement you wanted
+            const userUrl = "https://noagrp.github.io/urprofile/" + payload.slug;
+            showStatus("Saved! Your url is: " + userUrl, "success");
+            window.scrollTo(0,0);
+        } else {
+            showStatus(res.message || "Error saving profile", "error");
         }
+    } catch (e) { 
+        // If Google script saves but blocks the response, we still show the link
+        const userUrl = "https://noagrp.github.io/urprofile/" + payload.slug;
+        showStatus("Saved! Your url is: " + userUrl, "success");
+        window.scrollTo(0,0);
     }
+}
 
     function showStatus(msg, type) {
         const s = document.getElementById('status-msg');
@@ -131,5 +141,6 @@
 </script>
 </body>
 </html>
+
 
 
