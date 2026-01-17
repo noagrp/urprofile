@@ -5,11 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading...</title>
     <style>
-        body { font-family: -apple-system, sans-serif; display: flex; align-items: center; height: 100%; background: #f8fafc; margin: 0; color: #64748b; }
+        body { font-family: -apple-system, sans-serif; 
+        display: flex; 
+        /* 1. Stack loader and profile vertically */
+        flex-direction: column; 
+        /* 2. Center horizontally */
+        align-items: center; 
+        /* 3. Start at the top to prevent clipping */
+        justify-content: flex-start; 
+        /* 4. Use min-height so the page can expand */
+        min-height: 100vh; 
+        background: #f8fafc; 
+        margin: 0; 
+        color: #64748b; 
+    }
         .loader { border: 3px solid #e2e8f0; border-top: 3px solid #2563eb; border-radius: 50%; width: 28px; height: 28px; animation: spin 1s linear infinite; margin-bottom: 12px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        #status-wrap { text-align: center; }
-        #profile-root { display: none; width: 100%; }
+       #status-wrap { 
+        text-align: center; 
+        margin-top: 40vh; 
+    }
+
+    .loader { 
+        border: 3px solid #e2e8f0; 
+        border-top: 3px solid #2563eb; 
+        border-radius: 50%; 
+        width: 28px; 
+        height: 28px; 
+        animation: spin 1s linear infinite; 
+        margin: 0 auto 12px; /* Centers the circle itself */
+    }
+
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    
+    #profile-root { 
+        display: none; 
+        width: 100%; 
+        /* Ensure no extra gaps at the top when the profile loads */
+        margin-top: 0; 
+    }
     </style>
 </head>
 <body>
@@ -120,6 +154,7 @@
     </script>
 </body>
 </html>
+
 
 
 
