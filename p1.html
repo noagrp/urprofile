@@ -125,6 +125,17 @@
             border-radius: 0px;
         }
 
+        @media (max-width: 480px) {
+    /* 1. Increase padding-top so it sits below the phone's notch/clock */
+    .p-body-wrap { padding-top: 30px; } 
+
+    /* 2. Remove margin-top to keep the spacing controlled by the wrapper */
+    .p-container { padding: 30px 20px; margin-top: 0px; } 
+
+    /* 3. Keep your image size, but ensure head isn't cut */
+    .p-pfp { width: 90px; height: 90px; margin-bottom: 20px; }
+}
+
     </style>
 </head>
 <body>
@@ -143,5 +154,6 @@
 
 </body>
 </html>
+
 
 
