@@ -1,122 +1,167 @@
-<style>
-    /* 1. Dark Responsive Background */
-    .p-body-wrap { 
-        min-height: 100vh; 
-        background-color: #050505; 
-        /* FIX: Smaller top padding for mobile to prevent cutoff */
-        padding: 20px 20px 60px 20px; 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        /* FIX: Start at top so tall cards don't disappear upward */
-        justify-content: flex-start; 
-        font-family: 'Inter', sans-serif;
-        box-sizing: border-box;
-        color: #ffffff;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 1. Dark Responsive Background */
+        .p-body-wrap { 
+            min-height: 100vh; 
+            background-color: #050505; /* Deep Onyx */
+            /* FIX: Reduced top padding for mobile safety */
+            padding: 20px 20px 60px 20px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* FIX: Content starts at top so it's never cut off */
+            justify-content: flex-start; 
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+            color: #ffffff;
+        }
 
-    /* 2. The Dark Container */
-    .p-container { 
-        max-width: 400px; 
-        width: 100%; 
-        background: #0f0f0f;
-        /* FIX: Slightly less padding on mobile to save space */
-        padding: 40px 25px; 
-        border: 1px solid #222222; 
-        border-radius: 0px; 
-        text-align: center;
-        box-shadow: 12px 12px 0px rgba(255,255,255,0.03); 
-        box-sizing: border-box;
-        /* FIX: Ensures a gap from the top of the browser */
-        margin-top: 20px; 
-    }
+        /* 2. The Dark Container */
+        .p-container { 
+            max-width: 400px; 
+            width: 100%; 
+            background: #0f0f0f; 
+            /* FIX: Adjusted padding for better mobile height */
+            padding: 40px 25px; 
+            border: 1px solid #222222; 
+            border-radius: 0px; 
+            text-align: center;
+            box-shadow: 12px 12px 0px rgba(255,255,255,0.03); 
+            box-sizing: border-box;
+            /* FIX: Safe gap from the top of the screen */
+            margin-top: 20px;
+        }
 
-    /* 3. Profile Image Fix */
-    .p-pfp { 
-        width: 110px; 
-        height: 110px; 
-        margin: 0 auto 30px; 
-        /* FIX: object-fit + object-position:top prevents cutting heads */
-        object-fit: cover; 
-        object-position: top; 
-        border: 1.5px solid #ffffff;
-        display: none; /* Controlled by JS */
-    }
+        /* 3. Profile Image FIX */
+        .p-pfp { 
+            width: 110px; 
+            height: 110px; 
+            border-radius: 0px; 
+            margin: 0 auto 30px; 
+            border: 1.5px solid #ffffff;
+            /* FIX: object-fit + object-position:top ensures the head is visible */
+            object-fit: cover; 
+            object-position: top;
+            display: none; /* Handled by JS */
+        }
 
-    /* 4. High-Fashion Headlines */
-    .p-name { 
-        font-family: 'Bebas Neue', sans-serif;
-        /* FIX: clamp ensures the name fits on one line on small phones */
-        font-size: clamp(1.8rem, 8vw, 2.5rem); 
-        font-weight: 400; 
-        color: #ffffff;
-        margin: 0 0 8px 0;
-        letter-spacing: 2px;
-        word-wrap: break-word;
-        line-height: 1;
-    }
+        /* 4. High-Fashion Headlines */
+        .p-name { 
+            font-family: 'Bebas Neue', sans-serif;
+            /* FIX: clamp shrinks the name so it doesn't wrap awkwardly on small phones */
+            font-size: clamp(1.8rem, 8vw, 2.5rem); 
+            font-weight: 400; 
+            color: #ffffff;
+            margin: 0 0 8px 0;
+            letter-spacing: 2px;
+            word-wrap: break-word;
+            line-height: 1;
+        }
 
-    .p-bio { 
-        font-size: 0.9rem; 
-        color: #888888; 
-        line-height: 1.6; 
-        margin-bottom: 35px;
-        font-weight: 300;
-        border-top: 1px solid #1a1a1a;
-        padding-top: 20px;
-    }
+        .p-bio { 
+            font-size: 0.9rem; 
+            color: #888888; 
+            line-height: 1.6; 
+            margin-bottom: 35px;
+            font-weight: 300;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 20px;
+            word-wrap: break-word;
+        }
 
-    /* 5. Luxury Outline Buttons */
-    .p-links { 
-        display: flex; 
-        flex-direction: column; 
-        gap: 12px; 
-    }
+        /* 5. Luxury Outline Buttons */
+        .p-links { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+        }
 
-    .p-link-btn { 
-        border: 1px solid #ffffff;
-        background: transparent;
-        color: #ffffff; 
-        padding: 16px; 
-        text-decoration: none; 
-        font-weight: 700; 
-        text-transform: uppercase;
-        font-size: 0.75rem;
-        letter-spacing: 2px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+        .p-link-btn { 
+            font-family: 'Inter', sans-serif;
+            border: 1px solid #ffffff;
+            background: transparent;
+            color: #ffffff; 
+            padding: 16px; 
+            text-decoration: none; 
+            font-weight: 700; 
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            word-wrap: break-word;
+        }
 
-    .p-link-btn:hover { 
-        background: #ffffff;
-        color: #000000; 
-        transform: translateY(-2px);
-    }
+        .p-link-btn:hover { 
+            background: #ffffff;
+            color: #000000; 
+            transform: translateY(-2px);
+        }
 
-    /* 6. Social Text Links */
-    .p-socials { 
-        margin-top: 45px; 
-        display: flex; 
-        justify-content: center; 
-        gap: 15px; 
-        flex-wrap: wrap;
-    }
+        /* 6. Social Text Links */
+        .p-socials { 
+            margin-top: 45px; 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            flex-wrap: wrap;
+        }
 
-    .p-social-icon { 
-        color: #ffffff; 
-        text-decoration: none;
-        font-size: 0.7rem; 
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        border-bottom: 1px solid #333333;
-        padding-bottom: 2px;
-        transition: border 0.3s ease;
-    }
+        .p-social-icon { 
+            color: #ffffff; 
+            text-decoration: none;
+            font-size: 0.7rem; 
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-bottom: 1px solid #333333;
+            padding-bottom: 2px;
+            transition: border 0.3s ease;
+        }
 
-    /* 7. Mobile View Adjustments */
-    @media (max-width: 480px) {
-        .p-body-wrap { padding-top: 10px; }
-        .p-container { padding: 30px 20px; margin-top: 10px; }
-        .p-pfp { width: 90px; height: 90px; margin-bottom: 20px; }
-    }
-</style>
+        .p-social-icon:hover {
+            border-bottom: 1px solid #ffffff;
+        }
+        
+        /* 7. Video Area (Responsive Fix) */
+        .p-yt {
+            margin-top: 30px;
+            display: none;
+        }
+
+        .p-yt iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: 1px solid #222222;
+            border-radius: 0px;
+        }
+
+        /* 8. Mobile-Only Tweaks */
+        @media (max-width: 480px) {
+            .p-body-wrap { padding-top: 10px; }
+            .p-container { padding: 30px 20px; margin-top: 10px; }
+            .p-pfp { width: 90px; height: 90px; margin-bottom: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="p-body-wrap">
+        <div class="p-container">
+            <img class="p-pfp" src="" alt="Profile">
+            <h1 class="p-name"></h1>
+            <div class="p-bio"></div>
+            
+            <div class="p-links"></div>
+            <div class="p-yt"></div>
+            <div class="p-socials"></div>
+        </div>
+    </div>
+</body>
+</html>
