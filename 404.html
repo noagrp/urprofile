@@ -3,103 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading Profile...</title>
+    <title>Loading...</title>
     <style>
-        /* Loading Screen Styling - Only visible for a split second */
-        body { font-family: -apple-system, system-ui, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f8fafc; margin: 0; color: #64748b; }
+        body { font-family: -apple-system, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f8fafc; margin: 0; color: #64748b; }
         .loader { border: 3px solid #e2e8f0; border-top: 3px solid #2563eb; border-radius: 50%; width: 28px; height: 28px; animation: spin 1s linear infinite; margin-bottom: 12px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        #load-wrap { text-align: center; display: flex; flex-direction: column; align-items: center; }
-        #profile-root { width: 100%; display: none; }
+        #status-wrap { text-align: center; }
+        #profile-root { display: none; width: 100%; }
     </style>
 </head>
 <body>
 
-    <div id="load-wrap">
+    <div id="status-wrap">
         <div class="loader"></div>
-        <div id="status">Connecting...</div>
+        <div id="msg">Connecting...</div>
     </div>
 
     <div id="profile-root"></div>
 
     <script>
-        // REPLACE with your actual Google Script URL
         const API_URL = "https://script.google.com/macros/s/AKfycbwmSwq2K_xX6qCWfIZNHzeJzTgUuhoX7nJooe3ZWv00NhVed-q7LBxegHzKKhuKGcPmZA/exec";
 
         async function init() {
-            // A. Get Slug from URL path (e.g., 'aesyonline')
-            const pathParts = window.location.pathname.split('/');
-            const slug = pathParts.filter(Boolean).pop(); 
+            const pathSegments = window.location.pathname.split('/').filter(p => p && p !== 'urprofile');
+            const slug = pathSegments[0]; 
 
-            // B. Route Guard: If at home or repo root, go to manager
-            if (!slug || slug === "urprofile" || slug === "index.html") {
+            if (!slug || slug === "index.html") {
                 window.location.href = "/urprofile/index.html";
                 return;
             }
 
             try {
-                // C. Fetch Profile Data from Google Sheets
-                document.getElementById('status').innerText = "Fetching Data...";
                 const response = await fetch(`${API_URL}?u=${slug}`);
                 const result = await response.json();
 
-                if (!result.success) {
-                    document.getElementById('status').innerText = "Profile '" + slug + "' not found.";
-                    return;
+                if (result.success) {
+                    const templateName = result.data.temp || 'p1';
+                    const tResponse = await fetch(`/urprofile/${templateName}.html`);
+                    const tHtml = await tResponse.text();
+
+                    document.getElementById('status-wrap').remove();
+                    const root = document.getElementById('profile-root');
+                    root.innerHTML = tHtml;
+                    root.style.display = 'block';
+
+                    paint(result.data);
+                } else {
+                    document.getElementById('status-wrap').innerHTML = "Profile not found.";
                 }
-
-                // D. Fetch the Template Skin (p1.html, p2.html, etc.)
-                document.getElementById('status').innerText = "Applying Theme...";
-                const templateName = result.data.temp || 'p1';
-                const tResponse = await fetch(`/urprofile/${templateName}.html`);
-                
-                if (!tResponse.ok) throw new Error("Template not found");
-                const tHtml = await tResponse.text();
-
-                // E. Inject Template & Hide Loader
-                document.getElementById('load-wrap').style.display = 'none';
-                const root = document.getElementById('profile-root');
-                root.innerHTML = tHtml;
-                root.style.display = 'block';
-                document.body.style.display = 'block'; // Reset flex centering
-
-                // F. Paint the Data
-                paint(result.data);
-
             } catch (e) {
-                console.error(e);
-                document.getElementById('status').innerText = "Error loading profile template.";
+                document.getElementById('status-wrap').innerHTML = "Error loading profile.";
             }
         }
 
         function paint(data) {
-            document.title = data.name + " | Profile";
+            document.title = data.name || "Profile";
             
-            // 1. Text & Profile Picture
-            const nameEl = document.querySelector('.p-name');
-            const bioEl = document.querySelector('.p-bio');
-            const pfpEl = document.querySelector('.p-pfp');
-            
-            if(nameEl) nameEl.innerText = data.name;
-            if(bioEl) bioEl.innerText = data.bio;
-            if(pfpEl && data.pfp) { 
-                pfpEl.src = data.pfp; 
-                pfpEl.style.display = 'block'; 
+            // 1. Basic Info
+            if(document.querySelector('.p-name')) document.querySelector('.p-name').innerText = data.name;
+            if(document.querySelector('.p-bio')) document.querySelector('.p-bio').innerText = data.bio;
+            if(document.querySelector('.p-pfp') && data.pfp) {
+                document.querySelector('.p-pfp').src = data.pfp;
+                document.querySelector('.p-pfp').style.display = 'block';
             }
 
-            // 2. Main Links (1-5)
-            const list = document.querySelector('.p-links');
-            if(list) {
+            // 2. Main Links (1-5) - Synced to your link1_text, link1_url, etc.
+            const linkList = document.querySelector('.p-links');
+            if(linkList) {
                 for(let i=1; i<=5; i++) {
-                    const text = data[`link${i}_text`];
+                    const txt = data[`link${i}_text`];
                     const url = data[`link${i}_url`];
-                    if(text && url) {
+                    if(txt && url) {
                         const a = document.createElement('a');
                         a.className = 'p-link-btn';
-                        a.innerText = text;
+                        a.innerText = txt;
                         a.href = url.startsWith('http') ? url : 'https://' + url;
                         a.target = "_blank";
-                        list.appendChild(a);
+                        linkList.appendChild(a);
                     }
                 }
             }
@@ -107,16 +87,15 @@
             // 3. YouTube Video Injection
             const ytEl = document.querySelector('.p-yt');
             if(ytEl && data.yt_video) {
-                // Clean the ID in case they pasted a full URL
                 const vidId = data.yt_video.includes('v=') ? data.yt_video.split('v=')[1].split('&')[0] : data.yt_video;
-                ytEl.innerHTML = `<iframe width="100%" height="315" src="https://www.youtube.com/embed/${vidId}" frameborder="0" allowfullscreen style="border-radius:12px; margin-top:15px;"></iframe>`;
+                ytEl.innerHTML = `<iframe width="100%" height="250" src="https://www.youtube.com/embed/${vidId}" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>`;
                 ytEl.style.display = 'block';
             }
 
-            // 4. Social Media Icons
+            // 4. Social Media Icons - Synced to ig, wa, fb, li, tw, tel, email
             const socialWrap = document.querySelector('.p-socials');
             if(socialWrap) {
-                const config = [
+                const socialConfig = [
                     {key: 'wa', label: 'WhatsApp', base: 'https://wa.me/'},
                     {key: 'ig', label: 'Instagram', base: 'https://instagram.com/'},
                     {key: 'fb', label: 'Facebook', base: 'https://facebook.com/'},
@@ -125,7 +104,7 @@
                     {key: 'tel', label: 'Call', base: 'tel:'},
                     {key: 'email', label: 'Email', base: 'mailto:'}
                 ];
-                config.forEach(s => {
+                socialConfig.forEach(s => {
                     if(data[s.key]) {
                         const icon = document.createElement('a');
                         icon.href = s.base + data[s.key];
@@ -137,7 +116,6 @@
                 });
             }
         }
-
         init();
     </script>
 </body>
