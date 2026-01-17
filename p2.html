@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Link</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
@@ -11,13 +12,11 @@
         /* 1. Dark Responsive Background */
         .p-body-wrap { 
             min-height: 100vh; 
-            background-color: #050505; /* Deep Onyx */
-            /* FIX: Reduced top padding for mobile safety */
+            background-color: #050505; 
             padding: 20px 20px 60px 20px; 
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* FIX: Content starts at top so it's never cut off */
             justify-content: flex-start; 
             font-family: 'Inter', sans-serif;
             box-sizing: border-box;
@@ -29,14 +28,12 @@
             max-width: 400px; 
             width: 100%; 
             background: #0f0f0f; 
-            /* FIX: Adjusted padding for better mobile height */
             padding: 40px 25px; 
             border: 1px solid #222222; 
             border-radius: 0px; 
             text-align: center;
             box-shadow: 12px 12px 0px rgba(255,255,255,0.03); 
             box-sizing: border-box;
-            /* FIX: Safe gap from the top of the screen */
             margin-top: 20px;
         }
 
@@ -47,16 +44,14 @@
             border-radius: 0px; 
             margin: 0 auto 30px; 
             border: 1.5px solid #ffffff;
-            /* FIX: object-fit + object-position:top ensures the head is visible */
             object-fit: cover; 
-            object-position: top;
-            display: none; /* Handled by JS */
+            object-position: top; /* Keeps head visible */
+            display: none; 
         }
 
         /* 4. High-Fashion Headlines */
         .p-name { 
             font-family: 'Bebas Neue', sans-serif;
-            /* FIX: clamp shrinks the name so it doesn't wrap awkwardly on small phones */
             font-size: clamp(1.8rem, 8vw, 2.5rem); 
             font-weight: 400; 
             color: #ffffff;
@@ -130,7 +125,7 @@
             border-bottom: 1px solid #ffffff;
         }
         
-        /* 7. Video Area (Responsive Fix) */
+        /* 7. Video Area */
         .p-yt {
             margin-top: 30px;
             display: none;
@@ -140,7 +135,6 @@
             width: 100%;
             aspect-ratio: 16 / 9;
             border: 1px solid #222222;
-            border-radius: 0px;
         }
 
         /* 8. Mobile-Only Tweaks */
@@ -154,14 +148,66 @@
 <body>
     <div class="p-body-wrap">
         <div class="p-container">
-            <img class="p-pfp" src="" alt="Profile">
-            <h1 class="p-name"></h1>
-            <div class="p-bio"></div>
-            
-            <div class="p-links"></div>
-            <div class="p-yt"></div>
-            <div class="p-socials"></div>
+            <img class="p-pfp" id="pfp" src="" alt="Profile">
+            <h1 class="p-name" id="name"></h1>
+            <div class="p-bio" id="bio"></div>
+            <div class="p-links" id="links"></div>
+            <div class="p-yt" id="yt"></div>
+            <div class="p-socials" id="socials"></div>
         </div>
     </div>
+
+    <script>
+        // DATA OBJECT: Change your info here
+        const data = {
+            name: "YOUR NAME",
+            bio: "Digital Creator & Designer based in the city. Crafting minimal experiences.",
+            pfp: "https://via.placeholder.com/150", // Replace with your image URL
+            links: [
+                { title: "Portfolio", url: "#" },
+                { title: "Latest Project", url: "#" },
+                { title: "Store", url: "#" }
+            ],
+            socials: [
+                { title: "Instagram", url: "#" },
+                { title: "Twitter", url: "#" }
+            ],
+            youtube: "" // Add YouTube ID here to show video
+        };
+
+        // RENDER LOGIC
+        document.getElementById('name').innerText = data.name;
+        document.getElementById('bio').innerText = data.bio;
+
+        if(data.pfp) {
+            const pfpImg = document.getElementById('pfp');
+            pfpImg.src = data.pfp;
+            pfpImg.style.display = 'block';
+        }
+
+        const linksContainer = document.getElementById('links');
+        data.links.forEach(link => {
+            const a = document.createElement('a');
+            a.className = 'p-link-btn';
+            a.href = link.url;
+            a.innerText = link.title;
+            linksContainer.appendChild(a);
+        });
+
+        const socialsContainer = document.getElementById('socials');
+        data.socials.forEach(social => {
+            const a = document.createElement('a');
+            a.className = 'p-social-icon';
+            a.href = social.url;
+            a.innerText = social.title;
+            socialsContainer.appendChild(a);
+        });
+
+        if(data.youtube) {
+            const ytContainer = document.getElementById('yt');
+            ytContainer.style.display = 'block';
+            ytContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${data.youtube}" frameborder="0" allowfullscreen></iframe>`;
+        }
+    </script>
 </body>
 </html>
