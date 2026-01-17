@@ -102,23 +102,35 @@
 
         /* 6. Social Icon Links */
         .p-socials { 
-            margin-top: 40px; 
-            display: flex; 
-            justify-content: center; 
-            gap: 25px; 
-            flex-wrap: wrap;
-        }
+    margin-top: 40px; 
+    display: flex; 
+    justify-content: center; 
+    gap: 12px; /* Tighter gap for pills */
+    flex-wrap: wrap;
+}
 
-        .p-social-icon { 
-            color: #ffffff; 
-            text-decoration: none; 
-            font-size: 0.8rem; 
-            font-weight: 500;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
+.p-social-icon { 
+    color: #ffffff; 
+    text-decoration: none; 
+    font-size: 0.7rem; 
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    /* The Pill Styling */
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 50px; /* Perfect circle ends */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    transition: all 0.3s ease;
+}
 
-        .p-social-icon:hover { opacity: 1; text-decoration: underline; }
+.p-social-icon:hover { 
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-3px); /* Subtle float up */
+}
         
         /* 7. Video Area */
         .p-yt { margin-top: 30px; display: none; }
@@ -142,4 +154,5 @@
         </div>
     </div>
 </body>
+
 </html>
