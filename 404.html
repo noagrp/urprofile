@@ -88,7 +88,7 @@
             const ytEl = document.querySelector('.p-yt');
             if(ytEl && data.yt_video) {
                 const vidId = data.yt_video.includes('v=') ? data.yt_video.split('v=')[1].split('&')[0] : data.yt_video;
-                ytEl.innerHTML = `<iframe width="100%" height="250" src="https://www.youtube.com/embed/${vidId}" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>`;
+                ytEl.innerHTML = `<iframe width="100%" height="250" src="https://www.youtube.com/embed/${vidId}" frameborder="0" allowfullscreen></iframe>`;
                 ytEl.style.display = 'block';
             }
 
@@ -120,3 +120,4 @@
     </script>
 </body>
 </html>
+
