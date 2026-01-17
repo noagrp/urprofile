@@ -1,0 +1,129 @@
+<style>
+    /* 1. Dark Responsive Background */
+    .p-body-wrap { 
+        min-height: 100vh; 
+        background-color: #0a0a0a; /* Deep Rich Black */
+        padding: 8vh 20px 60px 20px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; 
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        box-sizing: border-box;
+        color: #ffffff;
+    }
+
+    /* 2. The Dark Container */
+    .p-container { 
+        max-width: 400px; 
+        width: 100%; 
+        background: #121212; /* Slightly lighter black */
+        padding: 45px 30px; 
+        border: 1.5px solid #333333; /* Subdued border */
+        border-radius: 4px; 
+        text-align: center;
+        /* White offset shadow for that "Floating" look */
+        box-shadow: 10px 10px 0px rgba(255,255,255,0.05); 
+        box-sizing: border-box;
+    }
+
+    /* 3. Profile Image */
+    .p-pfp { 
+        width: 110px; 
+        height: 110px; 
+        border-radius: 0px; 
+        margin: 0 auto 30px; 
+        object-fit: cover; 
+        border: 1.5px solid #ffffff;
+        display: none;
+    }
+
+    /* 4. High Contrast Text */
+    .p-name { 
+        font-size: clamp(1.3rem, 5vw, 1.5rem); 
+        font-weight: 900; 
+        color: #ffffff;
+        margin: 0 0 12px 0;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        word-wrap: break-word;
+    }
+
+    .p-bio { 
+        font-size: 0.95rem; 
+        color: #a0a0a0; /* Dimmed for better reading */
+        line-height: 1.6; 
+        margin-bottom: 40px;
+        font-weight: 400;
+        border-top: 1px solid #222222;
+        padding-top: 20px;
+        word-wrap: break-word;
+    }
+
+    /* 5. Inverted Outline Buttons */
+    .p-links { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 12px; 
+    }
+
+    .p-link-btn { 
+        border: 1.5px solid #ffffff;
+        background: transparent;
+        color: #ffffff; 
+        padding: 14px; 
+        text-decoration: none; 
+        font-weight: 700; 
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        transition: all 0.2s ease;
+        word-wrap: break-word;
+    }
+
+    .p-link-btn:hover { 
+        background: #ffffff;
+        color: #000000; 
+    }
+
+    /* 6. Social Text Links */
+    .p-socials { 
+        margin-top: 40px; 
+        display: flex; 
+        justify-content: center; 
+        gap: 20px; 
+        flex-wrap: wrap;
+    }
+
+    .p-social-icon { 
+        color: #ffffff; 
+        text-decoration: underline; 
+        font-size: 0.75rem; 
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    
+    /* 7. Video Area */
+    .p-yt {
+        margin-top: 30px;
+        display: none;
+    }
+
+    .p-yt iframe {
+        width: 100%;
+        border: 1.5px solid #333333;
+        border-radius: 0px;
+    }
+</style>
+
+<div class="p-body-wrap">
+    <div class="p-container">
+        <img class="p-pfp" src="" alt="Profile">
+        <h1 class="p-name"></h1>
+        <div class="p-bio"></div>
+        
+        <div class="p-links"></div>
+        <div class="p-yt"></div>
+        <div class="p-socials"></div>
+    </div>
+</div>
