@@ -158,56 +158,7 @@
     </div>
 
     <script>
-        // DATA OBJECT: Change your info here
-        const data = {
-            name: "YOUR NAME",
-            bio: "Digital Creator & Designer based in the city. Crafting minimal experiences.",
-            pfp: "https://via.placeholder.com/150", // Replace with your image URL
-            links: [
-                { title: "Portfolio", url: "#" },
-                { title: "Latest Project", url: "#" },
-                { title: "Store", url: "#" }
-            ],
-            socials: [
-                { title: "Instagram", url: "#" },
-                { title: "Twitter", url: "#" }
-            ],
-            youtube: "" // Add YouTube ID here to show video
-        };
-
-        // RENDER LOGIC
-        document.getElementById('name').innerText = data.name;
-        document.getElementById('bio').innerText = data.bio;
-
-        if(data.pfp) {
-            const pfpImg = document.getElementById('pfp');
-            pfpImg.src = data.pfp;
-            pfpImg.style.display = 'block';
-        }
-
-        const linksContainer = document.getElementById('links');
-        data.links.forEach(link => {
-            const a = document.createElement('a');
-            a.className = 'p-link-btn';
-            a.href = link.url;
-            a.innerText = link.title;
-            linksContainer.appendChild(a);
-        });
-
-        const socialsContainer = document.getElementById('socials');
-        data.socials.forEach(social => {
-            const a = document.createElement('a');
-            a.className = 'p-social-icon';
-            a.href = social.url;
-            a.innerText = social.title;
-            socialsContainer.appendChild(a);
-        });
-
-        if(data.youtube) {
-            const ytContainer = document.getElementById('yt');
-            ytContainer.style.display = 'block';
-            ytContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${data.youtube}" frameborder="0" allowfullscreen></iframe>`;
-        }
-    </script>
+        
 </body>
 </html>
+
