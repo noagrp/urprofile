@@ -48,10 +48,18 @@
         </select>
 
         <hr>
-        <label>Display Name</label><input type="text" id="name">
-        <label>Bio</label><textarea id="bio" rows="3"></textarea>
-        <label>Profile Image URL</label><input type="text" id="pfp">
-        <label>YouTube ID</label><input type="text" id="yt_video">
+<label>Display Name</label>
+<input type="text" id="name" maxlength="50" placeholder="Max 50 chars">
+
+<label>Bio</label>
+<textarea id="bio" rows="3" maxlength="300" placeholder="Max 300 chars"></textarea>
+
+<label>Profile Image URL</label>
+<input type="text" id="pfp" placeholder="https://example.com/photo.jpg">
+
+<label>YouTube ID</label>
+<input type="text" id="yt_video" maxlength="11" placeholder="11-character ID only">
+<span class="hint">Example: dQw4w9WgXcQ</span>
 
         <hr>
         <h3>Buttons</h3>
@@ -149,6 +157,7 @@
 </script>
 </body>
 </html>
+
 
 
 
