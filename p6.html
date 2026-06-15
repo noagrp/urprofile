@@ -2,7 +2,7 @@
     /* Import Premium Romantic and Sans-Serif Fonts directly into the stylesheet */
     @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap');
 
-    /* 1. SMOOTH UPWARD VECTOR HEART STREAM ANIMATION */
+    /* 1. SMOOTH UPWARD TEXT EMOJI FLOATING ANIMATION */
     @keyframes floatingLoves {
         0% { 
             background-position: 0 0, 0 0; 
@@ -12,14 +12,14 @@
             filter: hue-rotate(180deg);
         }
         100% { 
-            background-position: 0 -200px, 0 -400px; /* Moves the heart vector grids perfectly straight up */
-            filter: hue-rotate(360deg); /* Smoothly morphs heart colors over time */
+            background-position: 0 -240px, 0 -480px; /* Moves the emoji grid perfectly straight up */
+            filter: hue-rotate(360deg); /* Smoothly morphs the hue colors over time */
         }
     }
 
     .p-body-wrap { 
         min-height: 100vh; 
-        /* Rich Pink & Deep Violet Gradient Base - Perfectly static */
+        /* Rich Pink & Deep Violet Gradient Base - Perfectly static background */
         background-color: #2c001e;
         background-image: linear-gradient(-45deg, #2c001e, #7a004d, #4a0033);
         display: flex;
@@ -35,23 +35,25 @@
         overflow-x: hidden;
     }
 
-    /* Clean Vector Layer replacing the broken text character system */
+    /* CREATIVE TWIST: Foreground Emoji Overlay Layer */
     .p-body-wrap::before {
         content: "";
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
-        pointer-events: none;
-        z-index: 1;
-        opacity: 0.18;
         
-        /* Two offset grids of clean crisp SVG hearts for a natural layered depth */
+        /* CRITICAL FIXES FOR FOREGROUND INTERACTIVE LAYER */
+        z-index: 3; /* Pushes the hearts to the absolute front, over text and images */
+        pointer-events: none; /* Allows visitors to click right through the hearts onto your links */
+        opacity: 0.22; /* Slightly bumped up contrast since it floats on top of dark card structures */
+        
+        /* Clean SVG wrapping emoji frames to guarantee crisp, blocky geometry tiling */
         background-image: 
-            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='32' height='32'%3E%3Cpath fill='%23ffffff' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.5 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E"),
-            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='20' height='20'%3E%3Cpath fill='%23ffb3d9' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.5 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ctext y='30' font-size='30' fill='%23ffffff'%3E❤️%3C/text%3E%3C/svg%3E"),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ctext y='18' font-size='18' fill='%23ffb3d9'%3E💖%3C/text%3E%3C/svg%3E");
         
-        background-size: 160px 200px, 240px 400px;
+        background-size: 140px 240px, 200px 480px;
         background-repeat: repeat;
-        animation: floatingLoves 12s linear infinite;
+        animation: floatingLoves 15s linear infinite;
     }
 
     /* 2. GLASS HUD CONTAINER */
@@ -63,13 +65,13 @@
         -webkit-backdrop-filter: blur(25px);
         padding: 45px 30px; 
         border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 35px; /* Softer rounded look */
+        border-radius: 35px; 
         text-align: center;
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
         box-sizing: border-box;
         margin-top: 20px;
         position: relative;
-        z-index: 2;
+        z-index: 2; /* Sits cleanly behind the foreground overlay layer */
     }
 
     /* 3. PROFILE IMAGE */
