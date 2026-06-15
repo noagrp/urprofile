@@ -1,11 +1,11 @@
 <style>
-    /* Import High-Performance Dashboard and Tech Fonts */
+    /* Import High-Performance Racing and Tech Typography */
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
 
-    /* 1. System State Oscillations & Warning Indicator Blinks */
+    /* 1. Tachometer Aura Pulse Keyframes */
     @keyframes redlineGlow {
         0% { box-shadow: 0 20px 40px rgba(255, 40, 0, 0.15), 0 0 0 1px rgba(255, 40, 0, 0.1); }
-        50% { box-shadow: 0 25px 50px rgba(255, 40, 0, 0.35), 0 0 20px rgba(255, 40, 0, 0.4); border-color: #ff2800; }
+        50% { box-shadow: 0 25px 50px rgba(255, 40, 0, 0.35), 0 0 15px rgba(255, 40, 0, 0.4); border-color: #ff2800; }
         100% { box-shadow: 0 20px 40px rgba(255, 40, 0, 0.15), 0 0 0 1px rgba(255, 40, 0, 0.1); }
     }
 
@@ -17,7 +17,7 @@
 
     .p-body-wrap { 
         min-height: 100vh; 
-        background-color: #0d0d0f;
+        background-color: #0a0a0b;
         background-image: linear-gradient(rgba(255, 40, 0, 0.01) 1px, transparent 1px),
                           linear-gradient(90deg, rgba(255, 40, 0, 0.01) 1px, transparent 1px);
         background-size: 30px 30px;
@@ -30,27 +30,34 @@
         padding: 40px 20px 60px 20px;
         color: #ffffff;
         width: 100%;
+        /* Baseline Startup Mode: Desaturated Gray but completely visible and legible */
+        filter: grayscale(100%) brightness(0.8);
+        transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* 2. DASHBOARD SHELL (Starts in Standby/Off mode) */
+    /* Active Ignition State Modifier: Shifts layout to Full Vibrant Vivid Color */
+    .p-body-wrap.engine-active {
+        filter: grayscale(0%) brightness(1);
+    }
+
+    /* 2. SUPERCAR HUD CONTAINER */
     .p-container { 
         max-width: 650px; 
         width: 100%; 
         background: #111113; 
         padding: 50px 30px; 
-        border: 2px solid #27272a; /* Cold steel standby border color */
+        border: 2px solid #27272a;
         border-radius: 4px; 
         text-align: center;
         box-sizing: border-box;
         margin-top: 20px;
         position: relative;
-        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: border-color 0.6s ease;
     }
 
-    /* System Status Ribbon Badge */
+    /* Upper System Status Ribbon */
     .p-container::before {
         content: "SYS STANDBY";
-        id: "telemetry-status-ribbon";
         position: absolute;
         top: -10px;
         left: 20px;
@@ -61,21 +68,21 @@
         font-weight: 900;
         padding: 2px 10px;
         letter-spacing: 1.5px;
-        transition: all 0.4s ease;
+        transition: background 0.4s ease, color 0.4s ease;
     }
 
-    /* IGNITION STATE ACTIVE MODIFIERS */
-    .p-container.engine-active {
+    /* Active Dashboard Container States */
+    .engine-active .p-container {
         border-color: #ff2800;
         animation: redlineGlow 2.5s ease-in-out infinite;
     }
-    .p-container.engine-active::before {
+    .engine-active .p-container::before {
         content: "LIVE TELEMETRY";
         background: #ff2800;
         color: #000000;
     }
 
-    /* 3. MINIMALIST ENGINE TOGGLE BUTTON SWITCH */
+    /* 3. INTERACTIVE CORE IGNITION CONTROL PAD */
     .ignition-switch-box {
         margin-bottom: 35px;
         display: flex;
@@ -90,7 +97,7 @@
         border-radius: 50%;
         border: 4px solid #27272a;
         background: #18181b;
-        color: #a1a1aa;
+        color: #ff2800; /* Keeps button text bright red during grayscale for UI safety readability */
         font-family: 'Orbitron', sans-serif;
         font-size: 0.7rem;
         font-weight: 900;
@@ -104,22 +111,17 @@
         transition: all 0.3s ease;
         box-shadow: 0 4px 10px rgba(0,0,0,0.4);
         user-select: none;
+        animation: buttonPulse 2s infinite; 
     }
 
-    /* Engine Off State Pulsing Indicator */
-    .start-stop-btn.pulse-ready {
-        border-color: rgba(255, 40, 0, 0.4);
-        color: #ff2800;
-        animation: buttonPulse 2s infinite;
-    }
-
-    /* Engine Running State Indicator Modifier */
-    .start-stop-btn.ignited {
+    /* Active Run Engine Switch Indicators */
+    .ignited .start-stop-btn {
         background: #ff2800;
         border-color: #ffffff;
         color: #000000;
         text-shadow: none;
         box-shadow: 0 0 20px rgba(255, 40, 0, 0.6);
+        animation: none; /* Stops warning standby pulsing frame loop when car is running */
     }
 
     .switch-label {
@@ -131,34 +133,21 @@
         text-transform: uppercase;
         transition: color 0.3s ease;
     }
-    .p-container.engine-active .switch-label { color: #ff2800; }
+    .engine-active .switch-label { color: #ff2800; }
 
-    /* 4. INSTRUMENT PANEL POWER MASKS */
-    .dashboard-gauge-panel {
-        opacity: 0.08;
-        filter: blur(1px) grayscale(100%);
-        pointer-events: none;
-        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .p-container.engine-active .dashboard-gauge-panel {
-        opacity: 1;
-        filter: none;
-        pointer-events: auto;
-    }
-
-    /* 5. AVATAR LAYOUT SHIELD */
+    /* 4. AVATAR LAYOUT SHIELDINDICATOR MASK */
     .p-pfp { 
         width: 115px; 
         height: 115px; 
         border-radius: 4px; 
         margin: 0 auto 25px; 
         object-fit: cover; 
-        display: none; /* Controlled by painting logic */
+        display: none; /* Managed programmatically by router engine painter */
         border: 2px solid #ff2800;
         box-shadow: 0 0 15px rgba(255, 40, 0, 0.2);
     }
 
-    /* 6. TYPOGRAPHY SYSTEM */
+    /* 5. HIGH-END TYPOGRAPHY SHELLS */
     .p-name { 
         font-family: 'Orbitron', sans-serif;
         font-size: clamp(1.6rem, 7vw, 2.3rem); 
@@ -182,7 +171,7 @@
         padding-top: 20px;
     }
 
-    /* 7. ASYMMETRICAL TRIM HYPER-BUTTON LINKS */
+    /* 6. ASYMMETRICAL CUT TRIM ACTION LINK BUTTONS */
     .p-links { 
         display: flex; 
         flex-direction: column; 
@@ -213,7 +202,7 @@
         box-shadow: -4px 4px 0px #ffffff;
     }
 
-    /* 8. CLUSTER FOOTER PILLOW SOCIALS */
+    /* 7. RACING TECHNICAL PILLOW ICON SOCIAL CHANNELS */
     .p-socials { 
         margin-top: 40px; 
         display: flex; 
@@ -243,7 +232,7 @@
     .p-social-icon::before { content: "[ "; }
     .p-social-icon::after { content: " ]"; }
 
-    /* 9. VIDEO SCREEN HOUSING */
+    /* 8. EMBEDDED DOCK MEDIA LAYER BLOCK */
     .p-yt {
         margin-top: 30px;
         display: none; 
@@ -257,48 +246,45 @@
     }
 </style>
 
-<div class="p-body-wrap">
-    <div class="p-container" id="fRed-core-shell">
+<div class="p-body-wrap" id="fRed-outer-wrap">
+    <div class="p-container">
         
-        <div class="ignition-switch-box">
-            <div class="start-stop-btn pulse-ready" id="ignition-hardware-node" onclick="runIgnitionToggle()">
+        <div class="ignition-switch-box" id="ignition-system-hub">
+            <div class="start-stop-btn" id="fRed-engine-button" onclick="executefRedIgnitionSequence()">
                 ENGINE<br><span style="font-size:0.55rem;font-weight:900;">START</span>
             </div>
             <div class="switch-label">Ignition Control</div>
         </div>
 
-        <div class="dashboard-gauge-panel" id="fRed-gauges-cluster">
-            <img class="p-pfp" src="" alt="Telemetry Frame">
-            <h1 class="p-name"></h1>
-            <div class="p-bio"></div>
-            
-            <div class="p-links"></div>
-            <div class="p-yt"></div>
-            <div class="p-socials"></div>
-        </div>
+        <img class="p-pfp" src="" alt="Telemetry Frame">
+        <h1 class="p-name"></h1>
+        <div class="p-bio"></div>
+        
+        <div class="p-links"></div>
+        <div class="p-yt"></div>
+        <div class="p-socials"></div>
 
     </div>
 </div>
 
 <script>
-    // Self-contained system engine executive controller block
-    function runIgnitionToggle() {
-        const shell = document.getElementById('fRed-core-shell');
-        const btn = document.getElementById('ignition-hardware-node');
+    // Local Scoped State Switch Execution Engine Block
+    function executefRedIgnitionSequence() {
+        const wrap = document.getElementById('fRed-outer-wrap');
+        const hub = document.getElementById('ignition-system-hub');
+        const btn = document.getElementById('fRed-engine-button');
         
-        const isCurrentlyActive = shell.classList.contains('engine-active');
+        const isEngineActive = wrap.classList.contains('engine-active');
         
-        if (!isCurrentlyActive) {
-            // Powering On sequence execution
-            shell.classList.add('engine-active');
-            btn.classList.remove('pulse-ready');
-            btn.classList.add('ignited');
+        if (!isEngineActive) {
+            // Powering On Sequence
+            wrap.classList.add('engine-active');
+            hub.classList.add('ignited');
             btn.innerHTML = 'ENGINE<br><span style="font-size:0.55rem;font-weight:900;">STOP</span>';
         } else {
-            // Shutdown execution
-            shell.classList.remove('engine-active');
-            btn.classList.remove('ignited');
-            btn.classList.add('pulse-ready');
+            // Shutdown Sequence
+            wrap.classList.remove('engine-active');
+            hub.classList.remove('ignited');
             btn.innerHTML = 'ENGINE<br><span style="font-size:0.55rem;font-weight:900;">START</span>';
         }
     }
