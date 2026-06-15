@@ -2,18 +2,11 @@
     /* Import Technical HUD Typography Sets directly into the stylesheet component */
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
 
-    /* 1. FLUID CHROMATIC COLOR SHIFT KEYFRAMES (Guaranteed to animate) */
-    @keyframes chromaGlowLoop {
-        0%, 100% { 
-            border-color: rgba(255, 0, 85, 0.4);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6), -4px -2px 30px rgba(255, 0, 85, 0.2);
-            text-shadow: 2px 0 0 rgba(255, 0, 85, 0.6), -2px 0 0 rgba(0, 150, 255, 0.4);
-        }
-        50% { 
-            border-color: rgba(0, 150, 255, 0.4);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 4px 2px 30px rgba(0, 150, 255, 0.2);
-            text-shadow: -2px 0 0 rgba(255, 0, 85, 0.4), 2px 0 0 rgba(0, 150, 255, 0.6);
-        }
+    /* 1. HIGH-PERFORMANCE NEON RUNNING LOOP KEYFRAMES */
+    @keyframes neonTraceLoop {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
     }
 
     @keyframes ambientWave {
@@ -23,8 +16,7 @@
 
     .p-body-wrap { 
         min-height: 100vh; 
-        /* Fluid, slow-moving cyber color backdrop */
-        background: linear-gradient(-45deg, #050508, #0b071a, #040914, #050508);
+        background: linear-gradient(-45deg, #040406, #090614, #03060e, #040406);
         background-size: 400% 400%;
         animation: ambientWave 12s ease infinite;
         display: flex;
@@ -40,7 +32,7 @@
         overflow-x: hidden;
     }
 
-    /* Crisp horizontal cyber matrix overlay line lines */
+    /* Crisp matrix scanlines layout overlay */
     .p-body-wrap::before {
         content: "";
         position: fixed;
@@ -51,50 +43,55 @@
         background-size: 100% 4px;
     }
 
-    /* 2. RGB CHROMATIC GLASS HUD CONTAINER */
+    /* 2. RECTANGULAR NEON TRACK RUNNING CONTAINER (THICK BORDER) */
     .p-container { 
         max-width: 650px; 
         width: 100%; 
-        background: rgba(14, 14, 19, 0.85); 
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        background: #0e0e12; 
         padding: 50px 30px; 
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px; /* Clean technical cuts */
+        border-radius: 12px; /* Smoother curve to look better with a thicker border */
         text-align: center;
         box-sizing: border-box;
         margin-top: 20px;
         position: relative;
         z-index: 2;
-        /* Triggers the color aberration glow pulse */
-        animation: chromaGlowLoop 6s ease-in-out infinite;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+        
+        /* INCREASED THICKNESS: 6px border width with amplified gradient flow sizes */
+        border: 6px solid transparent;
+        background-image: linear-gradient(#0e0e12, #0e0e12), 
+                          linear-gradient(90deg, #ff0055, #0096ff, #ff0055, #00ff6c, #ff0055);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        background-size: 100% 100%, 200% 200%;
+        animation: neonTraceLoop 5s linear infinite;
     }
 
-    /* Decorative Tech Label */
-    .p-container::before {
-        content: "neon";
+    /* Top Technical Sub-Label Frame */
+    .p-container::after {
+        content: "LOOP // TRACE_ACTIVE";
         position: absolute;
-        top: -10px;
+        top: -14px; /* Shifted up slightly to rest cleanly over the thicker border */
         left: 20px;
-        background: #111115;
-        color: #a1a1aa;
+        background: #0e0e12;
+        color: #71717a;
         font-family: 'Orbitron', sans-serif;
         font-size: 0.65rem;
         font-weight: 900;
         padding: 2px 10px;
         letter-spacing: 1.5px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    /* 3. PROFILE INSTRUMENTS AVATAR */
+    /* 3. PROFILE INSTRUMENTS */
     .p-pfp { 
         width: 120px; 
         height: 120px; 
         border-radius: 4px; 
         margin: 0 auto 25px; 
         object-fit: cover; 
-        display: none; /* Injected dynamically by your shell loader */
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: none; /* Managed dynamically by your index.html file loader */
+        border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     /* 4. TYPOGRAPHY SYSTEM */
@@ -111,7 +108,7 @@
 
     .p-bio { 
         font-size: 0.95rem; 
-        color: #d4d4d8; 
+        color: #a1a1aa; 
         line-height: 1.6; 
         margin-bottom: 35px;
         font-weight: 400;
@@ -120,7 +117,7 @@
         padding-top: 20px;
     }
 
-    /* 5. SLOW CHROMATIC HOVER LINK BUTTONS */
+    /* 5. HOVER ACTION BUTTON LINKS */
     .p-links { 
         display: flex; 
         flex-direction: column; 
@@ -128,7 +125,7 @@
     }
 
     .p-link-btn { 
-        background: #121216;
+        background: #14141a;
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-left: 4px solid #ffffff; 
         color: #ffffff; 
@@ -145,13 +142,13 @@
 
     .p-link-btn:hover { 
         background: #ffffff;
-        color: #050508; 
+        color: #040406; 
         border-color: #ffffff;
         transform: skewX(-3deg) translateX(4px); 
-        box-shadow: -4px 4px 0px rgba(0, 150, 255, 0.6), 4px -4px 0px rgba(255, 0, 85, 0.6);
+        box-shadow: -4px 4px 0px rgba(0, 150, 255, 0.4);
     }
 
-    /* 6. BRACKETED UTILITY SOCIAL STRIPS */
+    /* 6. BRACKETED PILLOW SOCIAL TILES */
     .p-socials { 
         margin-top: 40px; 
         display: flex; 
@@ -182,7 +179,7 @@
     .p-social-icon::before { content: "[ "; }
     .p-social-icon::after { content: " ]"; }
 
-    /* 7. EMBEDDED MEDIA SCREEN HOUSING */
+    /* 7. EMBEDDED DOCK MEDIA AREA */
     .p-yt {
         margin-top: 30px;
         display: none; 
