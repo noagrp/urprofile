@@ -1,20 +1,27 @@
 <style>
-    /* Import Space Tech Typography Sets directly into the stylesheet component */
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap');
+    /* Import Technical HUD Typography Sets directly into the stylesheet component */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
 
-    /* 1. FIXED PURE CSS COSMIC WARP ANIMATIONS */
-    @keyframes deepSpaceStars {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-400px); }
+    /* 1. SLOW CHROMATIC RGB SHIFT BACKDROP LOOP KEYFRAMES */
+    @keyframes rgbShiftBase {
+        0%, 100% { background-color: #050508; text-shadow: 0 0 10px rgba(255,255,255,0.1); }
+        33% { text-shadow: 2px 0 0 rgba(255,0,0,0.4), -1px 0 0 rgba(0,0,255,0.3); }
+        66% { text-shadow: -1px 0 0 rgba(0,255,0,0.3), 1px 0 0 rgba(255,0,0,0.3); }
     }
-    @keyframes foreSpaceStars {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-800px); }
+
+    @keyframes auraChromaDrift {
+        0%, 100% { box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0px rgba(255,255,255,0); }
+        25% { box-shadow: 0 20px 50px rgba(0,0,0,0.6), -3px -1px 20px rgba(255, 0, 85, 0.25); border-color: rgba(255, 0, 85, 0.4); }
+        50% { box-shadow: 0 20px 50px rgba(0,0,0,0.6), 2px -2px 25px rgba(0, 257, 110, 0.2); border-color: rgba(0, 255, 110, 0.3); }
+        75% { box-shadow: 0 20px 50px rgba(0,0,0,0.6), -1px 3px 20px rgba(0, 150, 255, 0.25); border-color: rgba(0, 150, 255, 0.4); }
     }
 
     .p-body-wrap { 
         min-height: 100vh; 
-        background-color: #030308;
+        background-color: #050508;
+        /* Subtle matrix scanlines layout overlay accent */
+        background-image: linear-gradient(rgba(255, 255, 255, 0.005) 50%, rgba(0, 0, 0, 0.15) 50%);
+        background-size: 100% 4px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -26,72 +33,56 @@
         width: 100%;
         position: relative;
         overflow-x: hidden;
+        animation: rgbShiftBase 10s ease infinite;
     }
 
-    /* LAYER 1: Deep Slow-Moving background stars vector template */
-    .p-body-wrap::before {
-        content: "";
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
-        pointer-events: none;
-        z-index: 1;
-        opacity: 0.4;
-        background-image: 
-            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Ccircle cx='2' cy='2' r='1' fill='%23ffffff'/%3E%3C/svg%3E"),
-            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Ccircle cx='3' cy='3' r='1' fill='%23a5b4fc' opacity='0.7'/%3E%3C/svg%3E");
-        background-size: 150px 200px, 280px 400px;
-        background-repeat: repeat;
-        animation: deepSpaceStars 45s linear infinite;
-    }
-
-    /* LAYER 2: Foreground crisp interactive fast drifting stardust cluster matrix */
-    .p-body-wrap::after {
-        content: "";
-        position: fixed;
-        top: -400px; left: 0; right: 0; bottom: 0;
-        pointer-events: none;
-        z-index: 1;
-        opacity: 0.6;
-        background-image: 
-            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='4' cy='4' r='1.5' fill='%23ffffff'/%3E%3C/svg%3E"),
-            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Ccircle cx='6' cy='6' r='1' fill='%23ffffff' opacity='0.5'/%3E%3C/svg%3E");
-        background-size: 200px 300px, 400px 500px;
-        background-repeat: repeat;
-        animation: foreSpaceStars 25s linear infinite;
-    }
-
-    /* 2. PREMIUM COSMIC GLASS HUD CONTAINER */
+    /* 2. RGB CHROMATIC GLASS HUD CONTAINER */
     .p-container { 
         max-width: 650px; 
         width: 100%; 
-        background: rgba(10, 10, 20, 0.75); 
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        background: rgba(14, 14, 19, 0.85); 
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
         padding: 50px 30px; 
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 20px; 
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px; /* Clean technical corners */
         text-align: center;
         box-sizing: border-box;
         margin-top: 20px;
         position: relative;
-        z-index: 2; /* Forces content over the stars layers safely */
-        box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7),
-                    0 0 40px rgba(120, 150, 255, 0.05);
+        z-index: 2;
+        /* Slow continuous geometric distortion/shift simulation */
+        animation: auraChromaDrift 12s ease-in-out infinite;
     }
 
-    /* PROFILE AVATAR GAUGED IMAGE FRAME */
+    /* Decorative Tech Alignment Target Corner Overlays */
+    .p-container::before {
+        content: "SYSTEM // CHROMA_SHIFT_ACTIVE";
+        position: absolute;
+        top: -10px;
+        left: 20px;
+        background: #1a1a24;
+        color: #71717a;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 0.65rem;
+        font-weight: 900;
+        padding: 2px 10px;
+        letter-spacing: 1.5px;
+        border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* 3. PROFILE INSTRUMENTS AVATAR FIELD */
     .p-pfp { 
         width: 120px; 
         height: 120px; 
-        border-radius: 50%; 
+        border-radius: 4px; 
         margin: 0 auto 25px; 
         object-fit: cover; 
-        display: none; /* Managed dynamically by index.html loader */
-        border: 2px solid rgba(255, 255, 255, 0.7);
-        box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+        display: none; /* Managed dynamically by your main index.html file loader */
+        border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    /* TYPOGRAPHY SYSTEM */
+    /* 4. TYPOGRAPHY SYSTEM */
     .p-name { 
         font-family: 'Orbitron', sans-serif;
         font-size: clamp(1.6rem, 7vw, 2.3rem); 
@@ -100,21 +91,21 @@
         margin: 0 0 12px 0;
         letter-spacing: 2px;
         text-transform: uppercase;
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        font-style: italic;
     }
 
     .p-bio { 
         font-size: 0.95rem; 
-        color: #c9cbd6; 
+        color: #a1a1aa; 
         line-height: 1.6; 
         margin-bottom: 35px;
-        font-weight: 300;
+        font-weight: 400;
         word-wrap: break-word;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px dashed rgba(255, 255, 255, 0.1);
         padding-top: 20px;
     }
 
-    /* TRILINEAR ACTION LINKS */
+    /* 5. SLOW CHROMATIC HOVER LINK BUTTONS */
     .p-links { 
         display: flex; 
         flex-direction: column; 
@@ -122,54 +113,62 @@
     }
 
     .p-link-btn { 
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #16161c;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-left: 4px solid #ffffff; 
         color: #ffffff; 
         padding: 16px; 
         text-decoration: none; 
-        font-weight: 600; 
-        font-size: 0.9rem;
-        border-radius: 12px;
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        font-weight: 700; 
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        transition: all 0.25s ease-in-out;
         display: block;
+        text-align: left;
     }
 
     .p-link-btn:hover { 
-        background: rgba(255, 255, 255, 1);
-        color: #030308; 
+        background: #ffffff;
+        color: #050508; 
         border-color: #ffffff;
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15);
+        transform: skewX(-3deg) translateX(4px); 
+        box-shadow: -3px 3px 0px rgba(0, 150, 255, 0.5), 3px -3px 0px rgba(255, 0, 85, 0.5);
     }
 
-    /* MONOCHROME UTILITY SOCIAL BUTTONS */
+    /* 6. BRACKETED UTILITY SOCIAL STRIPS */
     .p-socials { 
         margin-top: 40px; 
         display: flex; 
         justify-content: center; 
-        gap: 8px; 
+        gap: 10px; 
         flex-wrap: wrap;
     }
 
     .p-social-icon { 
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        color: #e2e4ed;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #a1a1aa;
         text-decoration: none; 
         font-size: 0.75rem; 
-        font-weight: 600;
-        padding: 10px 18px;
-        border-radius: 30px;
+        font-weight: 700;
+        padding: 8px 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
         transition: all 0.2s ease;
     }
 
     .p-social-icon:hover { 
-        background: rgba(255, 255, 255, 0.15);
-        border-color: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.03);
+        border-color: #ffffff;
         color: #ffffff;
+        text-shadow: 1px 0 0 rgba(255,0,0,0.5), -1px 0 0 rgba(0,0,255,0.5);
     }
+    
+    .p-social-icon::before { content: "[ "; }
+    .p-social-icon::after { content: " ]"; }
 
-    /* TELEMETRY MEDIA SCREEN HOUSING */
+    /* 7. EMBEDDED MEDIA SCREEN HOUSING */
     .p-yt {
         margin-top: 30px;
         display: none; 
@@ -179,13 +178,13 @@
         width: 100%;
         aspect-ratio: 16 / 9;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        border-radius: 4px;
     }
 </style>
 
 <div class="p-body-wrap">
     <div class="p-container">
+        
         <img class="p-pfp" src="" alt="Avatar Frame">
         <h1 class="p-name"></h1>
         <div class="p-bio"></div>
@@ -193,5 +192,6 @@
         <div class="p-links"></div>
         <div class="p-yt"></div>
         <div class="p-socials"></div>
+
     </div>
 </div>
