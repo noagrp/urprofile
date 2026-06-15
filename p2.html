@@ -1,160 +1,144 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Link</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+    /* Import Google Fonts directly into the stylesheet component */
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700&display=swap');
+
+    /* 1. Dark Responsive Background */
+    .p-body-wrap { 
+        min-height: 100vh; 
+        background-color: #050505; 
+        padding: 20px 20px 60px 20px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; 
+        font-family: 'Inter', sans-serif;
+        box-sizing: border-box;
+        color: #ffffff;
+        width: 100%;
+    }
+
+    /* 2. The Dark Container */
+    .p-container { 
+        max-width: 650px; 
+        width: 100%; 
+        background: #0f0f0f; 
+        padding: 40px 25px; 
+        border: 1px solid #222222; 
+        border-radius: 0px; 
+        text-align: center;
+        box-shadow: 12px 12px 0px rgba(255,255,255,0.03); 
+        box-sizing: border-box;
+        margin-top: 20px;
+    }
+
+    /* 3. Profile Image */
+    .p-pfp { 
+        width: 110px; 
+        height: 110px; 
+        border-radius: 0px; 
+        margin: 0 auto 30px; 
+        border: 1.5px solid #ffffff;
+        object-fit: cover; 
+        object-position: top;
+        display: none; 
+    }
+
+    /* 4. High-Fashion Headlines */
+    .p-name { 
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(1.8rem, 8vw, 2.5rem); 
+        font-weight: 400; 
+        color: #ffffff;
+        margin: 0 0 8px 0;
+        letter-spacing: 2px;
+        word-wrap: break-word;
+        line-height: 1;
+    }
+
+    .p-bio { 
+        font-size: 0.9rem; 
+        color: #888888; 
+        line-height: 1.6; 
+        margin-bottom: 35px;
+        font-weight: 300;
+        border-top: 1px solid #1a1a1a;
+        padding-top: 20px;
+        word-wrap: break-word;
+    }
+
+    /* 5. Luxury Outline Buttons */
+    .p-links { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 12px; 
+    }
+
+    .p-link-btn { 
+        font-family: 'Inter', sans-serif;
+        border: 1px solid #ffffff;
+        background: transparent;
+        color: #ffffff; 
+        padding: 16px; 
+        text-decoration: none; 
+        font-weight: 700; 
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        word-wrap: break-word;
+    }
+
+    .p-link-btn:hover { 
+        background: #ffffff;
+        color: #000000; 
+        transform: translateY(-2px);
+    }
+
+    /* 6. Social Text Links */
+    .p-socials { 
+        margin-top: 45px; 
+        display: flex; 
+        justify-content: center; 
+        gap: 20px; 
+        flex-wrap: wrap;
+    }
+
+    .p-social-icon { 
+        color: #ffffff; 
+        text-decoration: none;
+        font-size: 0.7rem; 
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        border-bottom: 1px solid #333333;
+        padding-bottom: 2px;
+        transition: border 0.3s ease;
+    }
+
+    .p-social-icon:hover {
+        border-bottom: 1px solid #ffffff;
+    }
     
-    <style>
-        /* 1. Dark Responsive Background */
-        .p-body-wrap { 
-            min-height: 100vh; 
-            background-color: #050505; 
-            padding: 20px 20px 60px 20px; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start; 
-            font-family: 'Inter', sans-serif;
-            box-sizing: border-box;
-            color: #ffffff;
-        }
+    /* 7. Video Area */
+    .p-yt {
+        margin-top: 30px;
+        display: none;
+    }
 
-        /* 2. The Dark Container */
-        .p-container { 
-            max-width: 650px; 
-            width: 100%; 
-            background: #0f0f0f; 
-            padding: 40px 25px; 
-            border: 1px solid #222222; 
-            border-radius: 0px; 
-            text-align: center;
-            box-shadow: 12px 12px 0px rgba(255,255,255,0.03); 
-            box-sizing: border-box;
-            margin-top: 20px;
-        }
+    .p-yt iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: 1px solid #222222;
+    }
+</style>
 
-        /* 3. Profile Image FIX */
-        .p-pfp { 
-            width: 110px; 
-            height: 110px; 
-            border-radius: 0px; 
-            margin: 0 auto 30px; 
-            border: 1.5px solid #ffffff;
-            object-fit: cover; 
-            object-position: top; /* Keeps head visible */
-            display: none; 
-        }
-
-        /* 4. High-Fashion Headlines */
-        .p-name { 
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(1.8rem, 8vw, 2.5rem); 
-            font-weight: 400; 
-            color: #ffffff;
-            margin: 0 0 8px 0;
-            letter-spacing: 2px;
-            word-wrap: break-word;
-            line-height: 1;
-        }
-
-        .p-bio { 
-            font-size: 0.9rem; 
-            color: #888888; 
-            line-height: 1.6; 
-            margin-bottom: 35px;
-            font-weight: 300;
-            border-top: 1px solid #1a1a1a;
-            padding-top: 20px;
-            word-wrap: break-word;
-        }
-
-        /* 5. Luxury Outline Buttons */
-        .p-links { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 12px; 
-        }
-
-        .p-link-btn { 
-            font-family: 'Inter', sans-serif;
-            border: 1px solid #ffffff;
-            background: transparent;
-            color: #ffffff; 
-            padding: 16px; 
-            text-decoration: none; 
-            font-weight: 700; 
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            word-wrap: break-word;
-        }
-
-        .p-link-btn:hover { 
-            background: #ffffff;
-            color: #000000; 
-            transform: translateY(-2px);
-        }
-
-        /* 6. Social Text Links */
-        .p-socials { 
-            margin-top: 45px; 
-            display: flex; 
-            justify-content: center; 
-            gap: 20px; 
-            flex-wrap: wrap;
-        }
-
-        .p-social-icon { 
-            color: #ffffff; 
-            text-decoration: none;
-            font-size: 0.7rem; 
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-bottom: 1px solid #333333;
-            padding-bottom: 2px;
-            transition: border 0.3s ease;
-        }
-
-        .p-social-icon:hover {
-            border-bottom: 1px solid #ffffff;
-        }
-        
-        /* 7. Video Area */
-        .p-yt {
-            margin-top: 30px;
-            display: none;
-        }
-
-        .p-yt iframe {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            border: 1px solid #222222;
-        }
-
-    </style>
-</head>
-<body>
-    <div class="p-body-wrap">
-        <div class="p-container">
-            <img class="p-pfp" id="pfp" src="" alt="Profile">
-            <h1 class="p-name" id="name"></h1>
-            <div class="p-bio" id="bio"></div>
-            <div class="p-links" id="links"></div>
-            <div class="p-yt" id="yt"></div>
-            <div class="p-socials" id="socials"></div>
-        </div>
+<div class="p-body-wrap">
+    <div class="p-container">
+        <img class="p-pfp" src="" alt="Profile">
+        <h1 class="p-name"></h1>
+        <div class="p-bio"></div>
+        <div class="p-links"></div>
+        <div class="p-yt"></div>
+        <div class="p-socials"></div>
     </div>
-
-    <script>
-        
-</body>
-</html>
-
-
-
+</div>
