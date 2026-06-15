@@ -8,7 +8,6 @@
         :root { --primary: #2563eb; --bg: #f8fafc; --text: #1e293b; }
         body { font-family: sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
         
-        /* Dashboard Manager Styling */
         .container { max-width: 650px; width: 100%; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); box-sizing: border-box; margin: 20px 0; }
         h1, h2 { text-align: center; }
         .section { border-bottom: 1px solid #e2e8f0; padding-bottom: 20px; margin-bottom: 20px; }
@@ -24,11 +23,9 @@
         .error { background: #fee2e2; color: #991b1b; }
         .p-footer-disclaimer { text-align: justify; margin-top: 20px; font-size: 0.85rem; color: #64748b; }
 
-        /* Hash Routing Viewports */
+        /* Multi-view Routing Structural Styles */
         #manager-root { display: block; width: 100%; max-width: 650px; padding: 0 20px; box-sizing: border-box; }
         #profile-root { display: none; width: 100%; }
-        
-        /* Runtime Routing Loader Layout */
         #status-wrap { display: none; text-align: center; margin-top: 40vh; color: #64748b; }
         .loader { border: 3px solid #e2e8f0; border-top: 3px solid #2563eb; border-radius: 50%; width: 28px; height: 28px; animation: spin 1s linear infinite; margin: 0 auto 12px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -38,7 +35,7 @@
 
 <div id="status-wrap">
     <div class="loader"></div>
-    <div id="msg">Connecting...</div>
+    <div id="msg">Loading profile...</div>
 </div>
 
 <div id="profile-root"></div>
@@ -62,9 +59,6 @@
             <label>Template</label>
             <select id="temp">
                 <option value="p1">Design 01 - Minimal</option>
-                <option value="p2">Design 02 - Dark</option>
-                <option value="p3">Design 03 - Chameleon</option>
-                <option value="p4">Design 04 - BENNESSism</option>
             </select>
 
             <hr>
@@ -113,10 +107,7 @@
         
         <div class="p-footer-disclaimer">
             <b>Disclaimer</b><br>
-            User-profiles are created by independent individuals and may contain links to external websites. <b>UrProfile</b> does not monitor, endorse, or assume liability for third-party content. Users access external links at their own discretion.
-            <br><br>
-            <b>Transparency Notice</b><br>
-            To maintain platform safety, newly created URLs are logged for moderation purposes. If a link is reported for violating safety guidelines, it may be added to our blacklist.
+            User-profiles are created by independent individuals and may contain links to external websites. UrProfile does not monitor, endorse, or assume liability for third-party content.
         </div>
     </div>
 </div>
@@ -129,11 +120,10 @@
         this.value = this.value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     });
 
-    // Hash-router checking function
+    // Main Hash Router Engine
     async function checkRoute() {
         const hash = window.location.hash;
         
-        // If hash is missing, structurally invalid or empty, present Manager Dashboard
         if (!hash || !hash.startsWith('#/')) {
             document.getElementById('manager-root').style.display = "block";
             document.getElementById('profile-root').style.display = "none";
@@ -141,15 +131,13 @@
             return;
         }
 
-        // Isolate slug element from sequence: #/slug-name
         const slug = hash.replace('#/', '').split('?')[0];
         if(!slug) return;
 
-        // Hide App Core UI, show loading viewport
         document.getElementById('manager-root').style.display = "none";
         document.getElementById('profile-root').style.display = "none";
         document.getElementById('status-wrap').style.display = "block";
-        document.getElementById('msg').innerText = "Connecting...";
+        document.getElementById('msg').innerText = "Loading profile...";
 
         try {
             const response = await fetch(`${API_URL}?u=${slug}`);
@@ -157,7 +145,6 @@
 
             if (result.success) {
                 const templateName = result.data.temp || 'p1';
-                // Fetch template asset relative to parent directory root
                 const tResponse = await fetch(`./${templateName}.html`);
                 const tHtml = await tResponse.text();
 
@@ -171,7 +158,7 @@
                 document.getElementById('msg').innerText = "Profile not found.";
             }
         } catch (e) {
-            document.getElementById('msg').innerText = "Error loading profile.";
+            document.getElementById('msg').innerText = "Error connecting to server.";
         }
     }
 
@@ -187,7 +174,7 @@
 
         const linkList = document.querySelector('.p-links');
         if(linkList) {
-            linkList.innerHTML = ""; // Clear template placeholders
+            linkList.innerHTML = "";
             for(let i=1; i<=5; i++) {
                 const txt = data[`link${i}_text`];
                 const url = data[`link${i}_url`];
@@ -211,7 +198,7 @@
 
         const socialWrap = document.querySelector('.p-socials');
         if(socialWrap) {
-            socialWrap.innerHTML = ""; // Clear template placeholders
+            socialWrap.innerHTML = "";
             const socialConfig = [
                 {key: 'wa', label: 'WhatsApp', base: 'https://wa.me/'},
                 {key: 'ig', label: 'Instagram', base: 'https://instagram.com/'},
@@ -253,15 +240,12 @@
     async function submitData() {
         let payload = {};
         fields.forEach(f => { if(document.getElementById(f)) payload[f] = document.getElementById(f).value; });
-        
         if(!payload.slug || !payload.pass) return showStatus("Slug & Pass required", "error");
         
         showStatus("Saving...", "");
         try {
             const response = await fetch(API_URL, { method: "POST", body: JSON.stringify(payload) });
             await response.json();
-            
-            // Adjusted output generator for Hash Router URI
             const userUrl = "https://noagrp.github.io/urprofile/#/" + payload.slug;
             showStatus("Saved! Your url is: " + userUrl, "success");
             window.scrollTo(0,0);
@@ -277,7 +261,6 @@
         s.innerText = msg; s.className = type; s.style.display = "block";
     }
 
-    // Attach listeners to fire on both initial execution context and navigation events
     window.addEventListener('hashchange', checkRoute);
     window.addEventListener('DOMContentLoaded', checkRoute);
 </script>
