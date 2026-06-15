@@ -1,6 +1,6 @@
 <style>
     /* Import High-Performance Racing and Tech Typography */
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght=700;900&family=Plus+Jakarta+Sans:wght=400;500;700&display=swap');
 
     /* 1. Tachometer Aura Pulse Keyframes */
     @keyframes redlineGlow {
@@ -250,7 +250,7 @@
     <div class="p-container">
         
         <div class="ignition-switch-box" id="ignition-system-hub">
-            <div class="start-stop-btn" id="fRed-engine-button" onclick="executefRedIgnitionSequence()">
+            <div class="start-stop-btn" id="fRed-engine-button">
                 ENGINE<br><span style="font-size:0.55rem;font-weight:900;">START</span>
             </div>
             <div class="switch-label">Ignition Control</div>
@@ -268,24 +268,48 @@
 </div>
 
 <script>
-    // Local Scoped State Switch Execution Engine Block
-    function executefRedIgnitionSequence() {
+    // Self-contained state activation toggle block
+    function fireIgnitionStateToggle() {
         const wrap = document.getElementById('fRed-outer-wrap');
         const hub = document.getElementById('ignition-system-hub');
         const btn = document.getElementById('fRed-engine-button');
-        
+        if (!wrap || !hub || !btn) return;
+
         const isEngineActive = wrap.classList.contains('engine-active');
         
         if (!isEngineActive) {
-            // Powering On Sequence
             wrap.classList.add('engine-active');
             hub.classList.add('ignited');
             btn.innerHTML = 'ENGINE<br><span style="font-size:0.55rem;font-weight:900;">STOP</span>';
         } else {
-            // Shutdown Sequence
             wrap.classList.remove('engine-active');
             hub.classList.remove('ignited');
             btn.innerHTML = 'ENGINE<br><span style="font-size:0.55rem;font-weight:900;">START</span>';
         }
     }
+
+    // Mutation observer monitoring system designed to hook click-listeners right after index.html finishes rebuilding elements
+    (function initIgnitionRecoveryEngine() {
+        const targetContainer = document.getElementById('fRed-outer-wrap')?.parentElement;
+        if (!targetContainer) {
+            // Fallback: if template is loading slowly, wait for DOM initialization loops
+            setTimeout(initIgnitionRecoveryEngine, 50);
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            const dynamicBtn = document.getElementById('fRed-engine-button');
+            if (dynamicBtn && !dynamicBtn.onclick) {
+                // Safely remount click rules onto target button node elements
+                dynamicBtn.onclick = fireIgnitionStateToggle;
+            }
+        });
+
+        // Config observer loops to scan for child list reconstruction events
+        observer.observe(targetContainer, { childList: true, subtree: true });
+        
+        // Initial setup execution fallback execution pass
+        const initialBtn = document.getElementById('fRed-engine-button');
+        if (initialBtn) initialBtn.onclick = fireIgnitionStateToggle;
+    })();
 </script>
