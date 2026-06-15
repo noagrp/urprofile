@@ -1,25 +1,13 @@
 <style>
-    /* Import High-Performance Racing and Tech Typography */
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght=700;900&family=Plus+Jakarta+Sans:wght=400;500;700&display=swap');
-
-    /* 1. Tachometer Aura Pulse Keyframes */
-    @keyframes redlineGlow {
-        0% { box-shadow: 0 20px 40px rgba(255, 40, 0, 0.15), 0 0 0 1px rgba(255, 40, 0, 0.1); }
-        50% { box-shadow: 0 25px 50px rgba(255, 40, 0, 0.35), 0 0 15px rgba(255, 40, 0, 0.4); border-color: #ff2800; }
-        100% { box-shadow: 0 20px 40px rgba(255, 40, 0, 0.15), 0 0 0 1px rgba(255, 40, 0, 0.1); }
-    }
-
-    @keyframes buttonPulse {
-        0% { box-shadow: 0 0 0 0 rgba(255, 40, 0, 0.7); }
-        70% { box-shadow: 0 0 0 15px rgba(255, 40, 0, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(255, 40, 0, 0); }
-    }
+    /* Import High-Performance Tech Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
 
     .p-body-wrap { 
         min-height: 100vh; 
-        background-color: #0a0a0b;
-        background-image: linear-gradient(rgba(255, 40, 0, 0.01) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(255, 40, 0, 0.01) 1px, transparent 1px);
+        background-color: #0d0d0f;
+        /* Clean technical matrix grid lines */
+        background-image: linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
         background-size: 30px 30px;
         display: flex;
         flex-direction: column;
@@ -30,124 +18,36 @@
         padding: 40px 20px 60px 20px;
         color: #ffffff;
         width: 100%;
-        /* Baseline Startup Mode: Desaturated Gray but completely visible and legible */
-        filter: grayscale(100%) brightness(0.8);
-        transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Active Ignition State Modifier: Shifts layout to Full Vibrant Vivid Color */
-    .p-body-wrap.engine-active {
-        filter: grayscale(0%) brightness(1);
-    }
-
-    /* 2. SUPERCAR HUD CONTAINER */
+    /* PREMIUM MONOCHROME HUD CONTAINER */
     .p-container { 
         max-width: 650px; 
         width: 100%; 
-        background: #111113; 
+        background: #141417; 
         padding: 50px 30px; 
-        border: 2px solid #27272a;
-        border-radius: 4px; 
+        border: 1px solid #27272a;
+        border-radius: 4px; /* Sharp technical corners */
         text-align: center;
         box-sizing: border-box;
         margin-top: 20px;
         position: relative;
-        transition: border-color 0.6s ease;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     }
 
-    /* Upper System Status Ribbon */
-    .p-container::before {
-        content: "SYS STANDBY";
-        position: absolute;
-        top: -10px;
-        left: 20px;
-        background: #27272a;
-        color: #a1a1aa;
-        font-family: 'Orbitron', sans-serif;
-        font-size: 0.65rem;
-        font-weight: 900;
-        padding: 2px 10px;
-        letter-spacing: 1.5px;
-        transition: background 0.4s ease, color 0.4s ease;
-    }
-
-    /* Active Dashboard Container States */
-    .engine-active .p-container {
-        border-color: #ff2800;
-        animation: redlineGlow 2.5s ease-in-out infinite;
-    }
-    .engine-active .p-container::before {
-        content: "LIVE TELEMETRY";
-        background: #ff2800;
-        color: #000000;
-    }
-
-    /* 3. INTERACTIVE CORE IGNITION CONTROL PAD */
-    .ignition-switch-box {
-        margin-bottom: 35px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .start-stop-btn {
-        width: 76px;
-        height: 76px;
-        border-radius: 50%;
-        border: 4px solid #27272a;
-        background: #18181b;
-        color: #ff2800; /* Keeps button text bright red during grayscale for UI safety readability */
-        font-family: 'Orbitron', sans-serif;
-        font-size: 0.7rem;
-        font-weight: 900;
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        line-height: 1.2;
-        letter-spacing: 0.5px;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-        user-select: none;
-        animation: buttonPulse 2s infinite; 
-    }
-
-    /* Active Run Engine Switch Indicators */
-    .ignited .start-stop-btn {
-        background: #ff2800;
-        border-color: #ffffff;
-        color: #000000;
-        text-shadow: none;
-        box-shadow: 0 0 20px rgba(255, 40, 0, 0.6);
-        animation: none; /* Stops warning standby pulsing frame loop when car is running */
-    }
-
-    .switch-label {
-        font-family: 'Orbitron', sans-serif;
-        font-size: 0.6rem;
-        font-weight: 700;
-        letter-spacing: 1px;
-        color: #52525b;
-        text-transform: uppercase;
-        transition: color 0.3s ease;
-    }
-    .engine-active .switch-label { color: #ff2800; }
-
-    /* 4. AVATAR LAYOUT SHIELDINDICATOR MASK */
+    /* GAUGED AVATAR IMAGE FRAME */
     .p-pfp { 
         width: 115px; 
         height: 115px; 
         border-radius: 4px; 
         margin: 0 auto 25px; 
         object-fit: cover; 
-        display: none; /* Managed programmatically by router engine painter */
-        border: 2px solid #ff2800;
-        box-shadow: 0 0 15px rgba(255, 40, 0, 0.2);
+        display: none; /* Controlled dynamically by index.html loader */
+        border: 1px solid #71717a;
+        filter: grayscale(100%);
     }
 
-    /* 5. HIGH-END TYPOGRAPHY SHELLS */
+    /* TYPOGRAPHY SYSTEM */
     .p-name { 
         font-family: 'Orbitron', sans-serif;
         font-size: clamp(1.6rem, 7vw, 2.3rem); 
@@ -157,12 +57,12 @@
         letter-spacing: 2px;
         text-transform: uppercase;
         font-style: italic;
-        text-shadow: 2px 2px 0px #ff2800;
+        text-shadow: 2px 2px 0px #27272a;
     }
 
     .p-bio { 
         font-size: 0.9rem; 
-        color: #94a3b8; 
+        color: #a1a1aa; 
         line-height: 1.6; 
         margin-bottom: 35px;
         font-weight: 400;
@@ -171,7 +71,7 @@
         padding-top: 20px;
     }
 
-    /* 6. ASYMMETRICAL CUT TRIM ACTION LINK BUTTONS */
+    /* TRILINEAR ACTION LINKS */
     .p-links { 
         display: flex; 
         flex-direction: column; 
@@ -179,9 +79,9 @@
     }
 
     .p-link-btn { 
-        background: #18181b;
+        background: #1c1c21;
         border: 1px solid #27272a;
-        border-left: 4px solid #ff2800; 
+        border-left: 4px solid #ffffff; /* Sharp white accent block */
         color: #ffffff; 
         padding: 16px; 
         text-decoration: none; 
@@ -195,14 +95,13 @@
     }
 
     .p-link-btn:hover { 
-        background: #ff2800;
-        color: #0a0a0b; 
-        border-color: #ff2800;
-        transform: skewX(-4deg) translateX(4px); 
-        box-shadow: -4px 4px 0px #ffffff;
+        background: #ffffff;
+        color: #0d0d0f; 
+        border-color: #ffffff;
+        transform: skewX(-4deg) translateX(4px); /* Aerodynamic lean on hover */
     }
 
-    /* 7. RACING TECHNICAL PILLOW ICON SOCIAL CHANNELS */
+    /* MONOCHROME UTILITY BUTTONS */
     .p-socials { 
         margin-top: 40px; 
         display: flex; 
@@ -213,8 +112,8 @@
 
     .p-social-icon { 
         background: transparent;
-        border: 1px solid #ff2800;
-        color: #ff2800;
+        border: 1px solid #27272a;
+        color: #a1a1aa;
         text-decoration: none; 
         font-size: 0.75rem; 
         font-weight: 700;
@@ -225,14 +124,15 @@
     }
 
     .p-social-icon:hover { 
-        background: rgba(255, 40, 0, 0.1);
+        background: rgba(255, 255, 255, 0.05);
+        border-color: #ffffff;
         color: #ffffff;
     }
     
     .p-social-icon::before { content: "[ "; }
     .p-social-icon::after { content: " ]"; }
 
-    /* 8. EMBEDDED DOCK MEDIA LAYER BLOCK */
+    /* TELEMETRY MEDIA SCREEN HOUSING */
     .p-yt {
         margin-top: 30px;
         display: none; 
@@ -241,22 +141,20 @@
     .p-yt iframe {
         width: 100%;
         aspect-ratio: 16 / 9;
-        border: 2px solid #27272a;
-        border-top-color: #ff2800;
+        border: 1px solid #27272a;
+        filter: grayscale(100%);
+        transition: filter 0.3s ease;
+    }
+    
+    .p-yt iframe:hover {
+        filter: grayscale(0%); /* Restores natural color when viewing video elements */
     }
 </style>
 
-<div class="p-body-wrap" id="fRed-outer-wrap">
+<div class="p-body-wrap">
     <div class="p-container">
         
-        <div class="ignition-switch-box" id="ignition-system-hub">
-            <div class="start-stop-btn" id="fRed-engine-button">
-                ENGINE<br><span style="font-size:0.55rem;font-weight:900;">START</span>
-            </div>
-            <div class="switch-label">Ignition Control</div>
-        </div>
-
-        <img class="p-pfp" src="" alt="Telemetry Frame">
+        <img class="p-pfp" src="" alt="Avatar Frame">
         <h1 class="p-name"></h1>
         <div class="p-bio"></div>
         
@@ -266,50 +164,3 @@
 
     </div>
 </div>
-
-<script>
-    // Self-contained state activation toggle block
-    function fireIgnitionStateToggle() {
-        const wrap = document.getElementById('fRed-outer-wrap');
-        const hub = document.getElementById('ignition-system-hub');
-        const btn = document.getElementById('fRed-engine-button');
-        if (!wrap || !hub || !btn) return;
-
-        const isEngineActive = wrap.classList.contains('engine-active');
-        
-        if (!isEngineActive) {
-            wrap.classList.add('engine-active');
-            hub.classList.add('ignited');
-            btn.innerHTML = 'ENGINE<br><span style="font-size:0.55rem;font-weight:900;">STOP</span>';
-        } else {
-            wrap.classList.remove('engine-active');
-            hub.classList.remove('ignited');
-            btn.innerHTML = 'ENGINE<br><span style="font-size:0.55rem;font-weight:900;">START</span>';
-        }
-    }
-
-    // Mutation observer monitoring system designed to hook click-listeners right after index.html finishes rebuilding elements
-    (function initIgnitionRecoveryEngine() {
-        const targetContainer = document.getElementById('fRed-outer-wrap')?.parentElement;
-        if (!targetContainer) {
-            // Fallback: if template is loading slowly, wait for DOM initialization loops
-            setTimeout(initIgnitionRecoveryEngine, 50);
-            return;
-        }
-
-        const observer = new MutationObserver(() => {
-            const dynamicBtn = document.getElementById('fRed-engine-button');
-            if (dynamicBtn && !dynamicBtn.onclick) {
-                // Safely remount click rules onto target button node elements
-                dynamicBtn.onclick = fireIgnitionStateToggle;
-            }
-        });
-
-        // Config observer loops to scan for child list reconstruction events
-        observer.observe(targetContainer, { childList: true, subtree: true });
-        
-        // Initial setup execution fallback execution pass
-        const initialBtn = document.getElementById('fRed-engine-button');
-        if (initialBtn) initialBtn.onclick = fireIgnitionStateToggle;
-    })();
-</script>
