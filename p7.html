@@ -1,14 +1,10 @@
 <style>
-    /* Import High-Performance Tech Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
+    /* Import Space Tech Typography Sets directly into the stylesheet component */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap');
 
     .p-body-wrap { 
         min-height: 100vh; 
-        background-color: #0d0d0f;
-        /* Clean technical matrix grid lines */
-        background-image: linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
-        background-size: 30px 30px;
+        background-color: #030308;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -18,33 +14,50 @@
         padding: 40px 20px 60px 20px;
         color: #ffffff;
         width: 100%;
+        position: relative;
+        overflow-x: hidden;
     }
 
-    /* PREMIUM MONOCHROME HUD CONTAINER */
+    /* Interactive Fullscreen Orbit Canvas Target Housing */
+    #space-velocity-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Let clicks pass right through to your links safely */
+        z-index: 1;
+    }
+
+    /* PREMIUM COSMIC GLASS HUD CONTAINER */
     .p-container { 
         max-width: 650px; 
         width: 100%; 
-        background: #141417; 
+        background: rgba(10, 10, 20, 0.7); 
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         padding: 50px 30px; 
-        border: 1px solid #27272a;
-        border-radius: 4px; /* Sharp technical corners */
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 20px; 
         text-align: center;
         box-sizing: border-box;
         margin-top: 20px;
         position: relative;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        z-index: 2; /* Sits over the stars background layer safely */
+        box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7),
+                    0 0 40px rgba(120, 150, 255, 0.05);
     }
 
-    /* GAUGED AVATAR IMAGE FRAME */
+    /* PROFILE AVATAR GAUGED IMAGE FRAME */
     .p-pfp { 
-        width: 115px; 
-        height: 115px; 
-        border-radius: 4px; 
+        width: 120px; 
+        height: 120px; 
+        border-radius: 50%; 
         margin: 0 auto 25px; 
         object-fit: cover; 
-        display: none; /* Controlled dynamically by index.html loader */
-        border: 1px solid #71717a;
-        filter: grayscale(100%);
+        display: none; /* Managed dynamically by index.html loader */
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
     }
 
     /* TYPOGRAPHY SYSTEM */
@@ -56,18 +69,17 @@
         margin: 0 0 12px 0;
         letter-spacing: 2px;
         text-transform: uppercase;
-        font-style: italic;
-        text-shadow: 2px 2px 0px #27272a;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
     }
 
     .p-bio { 
-        font-size: 0.9rem; 
-        color: #a1a1aa; 
+        font-size: 0.95rem; 
+        color: #c9cbd6; 
         line-height: 1.6; 
         margin-bottom: 35px;
-        font-weight: 400;
+        font-weight: 300;
         word-wrap: break-word;
-        border-top: 1px dashed #27272a;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
         padding-top: 20px;
     }
 
@@ -79,58 +91,52 @@
     }
 
     .p-link-btn { 
-        background: #1c1c21;
-        border: 1px solid #27272a;
-        border-left: 4px solid #ffffff; /* Sharp white accent block */
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         color: #ffffff; 
         padding: 16px; 
         text-decoration: none; 
-        font-weight: 700; 
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        transition: all 0.2s ease-in-out;
+        font-weight: 600; 
+        font-size: 0.9rem;
+        border-radius: 12px;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         display: block;
-        text-align: left;
     }
 
     .p-link-btn:hover { 
-        background: #ffffff;
-        color: #0d0d0f; 
+        background: rgba(255, 255, 255, 1);
+        color: #030308; 
         border-color: #ffffff;
-        transform: skewX(-4deg) translateX(4px); /* Aerodynamic lean on hover */
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15);
     }
 
-    /* MONOCHROME UTILITY BUTTONS */
+    /* MONOCHROME UTILITY SOCIAL BUTTONS */
     .p-socials { 
         margin-top: 40px; 
         display: flex; 
         justify-content: center; 
-        gap: 10px; 
+        gap: 8px; 
         flex-wrap: wrap;
     }
 
     .p-social-icon { 
-        background: transparent;
-        border: 1px solid #27272a;
-        color: #a1a1aa;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: #e2e4ed;
         text-decoration: none; 
         font-size: 0.75rem; 
-        font-weight: 700;
-        padding: 8px 16px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+        font-weight: 600;
+        padding: 10px 18px;
+        border-radius: 30px;
         transition: all 0.2s ease;
     }
 
     .p-social-icon:hover { 
-        background: rgba(255, 255, 255, 0.05);
-        border-color: #ffffff;
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.4);
         color: #ffffff;
     }
-    
-    .p-social-icon::before { content: "[ "; }
-    .p-social-icon::after { content: " ]"; }
 
     /* TELEMETRY MEDIA SCREEN HOUSING */
     .p-yt {
@@ -141,19 +147,17 @@
     .p-yt iframe {
         width: 100%;
         aspect-ratio: 16 / 9;
-        border: 1px solid #27272a;
-        filter: grayscale(100%);
-        transition: filter 0.3s ease;
-    }
-    
-    .p-yt iframe:hover {
-        filter: grayscale(0%); /* Restores natural color when viewing video elements */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.4);
     }
 </style>
 
-<div class="p-body-wrap">
+<div class="p-body-wrap" id="universal-space-shell">
+    
+    <canvas id="space-velocity-canvas"></canvas>
+
     <div class="p-container">
-        
         <img class="p-pfp" src="" alt="Avatar Frame">
         <h1 class="p-name"></h1>
         <div class="p-bio"></div>
@@ -161,6 +165,140 @@
         <div class="p-links"></div>
         <div class="p-yt"></div>
         <div class="p-socials"></div>
-
     </div>
+    
 </div>
+
+<script>
+    (function initializeStellarEngine() {
+        const canvas = document.getElementById('space-velocity-canvas');
+        if (!canvas) {
+            // Fallback safety checkpoint loop if template DOM mounts sluggishly
+            setTimeout(initializeStellarEngine, 50);
+            return;
+        }
+
+        const ctx = canvas.getContext('2d');
+        let starsArray = [];
+        const maxStarsCount = 120;
+
+        // Reactive Pointer Coordinates Object Matrix
+        let pointer = { x: null, y: null, activeStrength: 0 };
+
+        function scaleCanvasDimensions() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        scaleCanvasDimensions();
+        window.addEventListener('resize', scaleCanvasDimensions);
+
+        // Core Cosmic Coordinate Tracking Listeners
+        window.addEventListener('mousemove', (e) => {
+            pointer.x = e.clientX;
+            pointer.y = e.clientY;
+            pointer.activeStrength = 40; // Max gravitational vector push lifetime duration indices
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                pointer.x = e.touches[0].clientX;
+                pointer.y = e.touches[0].clientY;
+                pointer.activeStrength = 40;
+            }
+        });
+
+        // Particle Class Pattern Template Configuration
+        class CosmicStarNode {
+            constructor() {
+                this.resetProperties();
+                // Randomize coordinate starting positions on boot execution
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+            }
+
+            resetProperties() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.radius = Math.random() * 1.5 + 0.5;
+                this.baseSpeedX = (Math.random() - 0.5) * 0.4;
+                this.baseSpeedY = (Math.random() - 0.5) * 0.4;
+                this.vx = this.baseSpeedX;
+                this.vy = this.baseSpeedY;
+                // Randomized brightness metrics
+                this.alpha = Math.random() * 0.6 + 0.4;
+                this.glowFactor = Math.random() * 0.02 + 0.01;
+            }
+
+            updateVelocity() {
+                // Gravity attraction tracking matrix logic
+                if (pointer.activeStrength > 0 && pointer.x !== null && pointer.y !== null) {
+                    const dx = pointer.x - this.x;
+                    const dy = pointer.y - this.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 250) {
+                        const forceDirectionX = dx / distance;
+                        const forceDirectionY = dy / distance;
+                        // Acceleration vector increments pulled straight toward cursor points
+                        const attractForce = (250 - distance) / 250;
+                        this.vx += forceDirectionX * attractForce * 0.12;
+                        this.vy += forceDirectionY * attractForce * 0.12;
+                    }
+                }
+
+                // Apply visual momentum adjustments
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Bring vector physics smoothly back down to orbital glide speed thresholds
+                this.vx *= 0.94;
+                this.vy *= 0.94;
+                this.vx += this.baseSpeedX * 0.06;
+                this.vy += this.baseSpeedY * 0.06;
+
+                // Constrain star opacity twinkle metrics
+                this.alpha += this.glowFactor;
+                if (this.alpha > 1 || this.alpha < 0.2) {
+                    this.glowFactor = -this.glowFactor;
+                }
+
+                // Screen boundary collision handler reboots
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.resetProperties();
+                    if (Math.random() > 0.5) {
+                        this.x = Math.random() > 0.5 ? 0 : canvas.width;
+                    } else {
+                        this.y = Math.random() > 0.5 ? 0 : canvas.height;
+                    }
+                }
+            }
+
+            renderStar() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                ctx.fill();
+            }
+        }
+
+        // Initialize particle array nodes
+        for (let i = 0; i < maxStarsCount; i++) {
+            starsArray.push(new CosmicStarNode());
+        }
+
+        // Main Continuous Execution Render Loop Frame
+        function processAnimationStep() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            if (pointer.activeStrength > 0) pointer.activeStrength--;
+
+            for (let i = 0; i < starsArray.length; i++) {
+                starsArray[i].updateVelocity();
+                starsArray[i].renderStar();
+            }
+            
+            requestAnimationFrame(processAnimationStep);
+        }
+        requestAnimationFrame(processAnimationStep);
+    })();
+</script>
