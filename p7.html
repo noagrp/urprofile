@@ -2,6 +2,16 @@
     /* Import Space Tech Typography Sets directly into the stylesheet component */
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Plus+Jakarta+Sans:wght@300;400;700&display=swap');
 
+    /* 1. FIXED PURE CSS COSMIC WARP ANIMATIONS */
+    @keyframes deepSpaceStars {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-400px); }
+    }
+    @keyframes foreSpaceStars {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-800px); }
+    }
+
     .p-body-wrap { 
         min-height: 100vh; 
         background-color: #030308;
@@ -18,22 +28,43 @@
         overflow-x: hidden;
     }
 
-    /* Interactive Fullscreen Orbit Canvas Target Housing */
-    #space-velocity-canvas {
+    /* LAYER 1: Deep Slow-Moving background stars vector template */
+    .p-body-wrap::before {
+        content: "";
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none; /* Let clicks pass right through to your links safely */
+        top: 0; left: 0; right: 0; bottom: 0;
+        pointer-events: none;
         z-index: 1;
+        opacity: 0.4;
+        background-image: 
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Ccircle cx='2' cy='2' r='1' fill='%23ffffff'/%3E%3C/svg%3E"),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Ccircle cx='3' cy='3' r='1' fill='%23a5b4fc' opacity='0.7'/%3E%3C/svg%3E");
+        background-size: 150px 200px, 280px 400px;
+        background-repeat: repeat;
+        animation: deepSpaceStars 45s linear infinite;
     }
 
-    /* PREMIUM COSMIC GLASS HUD CONTAINER */
+    /* LAYER 2: Foreground crisp interactive fast drifting stardust cluster matrix */
+    .p-body-wrap::after {
+        content: "";
+        position: fixed;
+        top: -400px; left: 0; right: 0; bottom: 0;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.6;
+        background-image: 
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='4' cy='4' r='1.5' fill='%23ffffff'/%3E%3C/svg%3E"),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Ccircle cx='6' cy='6' r='1' fill='%23ffffff' opacity='0.5'/%3E%3C/svg%3E");
+        background-size: 200px 300px, 400px 500px;
+        background-repeat: repeat;
+        animation: foreSpaceStars 25s linear infinite;
+    }
+
+    /* 2. PREMIUM COSMIC GLASS HUD CONTAINER */
     .p-container { 
         max-width: 650px; 
         width: 100%; 
-        background: rgba(10, 10, 20, 0.7); 
+        background: rgba(10, 10, 20, 0.75); 
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         padding: 50px 30px; 
@@ -43,7 +74,7 @@
         box-sizing: border-box;
         margin-top: 20px;
         position: relative;
-        z-index: 2; /* Sits over the stars background layer safely */
+        z-index: 2; /* Forces content over the stars layers safely */
         box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7),
                     0 0 40px rgba(120, 150, 255, 0.05);
     }
@@ -153,10 +184,7 @@
     }
 </style>
 
-<div class="p-body-wrap" id="universal-space-shell">
-    
-    <canvas id="space-velocity-canvas"></canvas>
-
+<div class="p-body-wrap">
     <div class="p-container">
         <img class="p-pfp" src="" alt="Avatar Frame">
         <h1 class="p-name"></h1>
@@ -166,139 +194,4 @@
         <div class="p-yt"></div>
         <div class="p-socials"></div>
     </div>
-    
 </div>
-
-<script>
-    (function initializeStellarEngine() {
-        const canvas = document.getElementById('space-velocity-canvas');
-        if (!canvas) {
-            // Fallback safety checkpoint loop if template DOM mounts sluggishly
-            setTimeout(initializeStellarEngine, 50);
-            return;
-        }
-
-        const ctx = canvas.getContext('2d');
-        let starsArray = [];
-        const maxStarsCount = 120;
-
-        // Reactive Pointer Coordinates Object Matrix
-        let pointer = { x: null, y: null, activeStrength: 0 };
-
-        function scaleCanvasDimensions() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        scaleCanvasDimensions();
-        window.addEventListener('resize', scaleCanvasDimensions);
-
-        // Core Cosmic Coordinate Tracking Listeners
-        window.addEventListener('mousemove', (e) => {
-            pointer.x = e.clientX;
-            pointer.y = e.clientY;
-            pointer.activeStrength = 40; // Max gravitational vector push lifetime duration indices
-        });
-
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                pointer.x = e.touches[0].clientX;
-                pointer.y = e.touches[0].clientY;
-                pointer.activeStrength = 40;
-            }
-        });
-
-        // Particle Class Pattern Template Configuration
-        class CosmicStarNode {
-            constructor() {
-                this.resetProperties();
-                // Randomize coordinate starting positions on boot execution
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-            }
-
-            resetProperties() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.radius = Math.random() * 1.5 + 0.5;
-                this.baseSpeedX = (Math.random() - 0.5) * 0.4;
-                this.baseSpeedY = (Math.random() - 0.5) * 0.4;
-                this.vx = this.baseSpeedX;
-                this.vy = this.baseSpeedY;
-                // Randomized brightness metrics
-                this.alpha = Math.random() * 0.6 + 0.4;
-                this.glowFactor = Math.random() * 0.02 + 0.01;
-            }
-
-            updateVelocity() {
-                // Gravity attraction tracking matrix logic
-                if (pointer.activeStrength > 0 && pointer.x !== null && pointer.y !== null) {
-                    const dx = pointer.x - this.x;
-                    const dy = pointer.y - this.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (distance < 250) {
-                        const forceDirectionX = dx / distance;
-                        const forceDirectionY = dy / distance;
-                        // Acceleration vector increments pulled straight toward cursor points
-                        const attractForce = (250 - distance) / 250;
-                        this.vx += forceDirectionX * attractForce * 0.12;
-                        this.vy += forceDirectionY * attractForce * 0.12;
-                    }
-                }
-
-                // Apply visual momentum adjustments
-                this.x += this.vx;
-                this.y += this.vy;
-
-                // Bring vector physics smoothly back down to orbital glide speed thresholds
-                this.vx *= 0.94;
-                this.vy *= 0.94;
-                this.vx += this.baseSpeedX * 0.06;
-                this.vy += this.baseSpeedY * 0.06;
-
-                // Constrain star opacity twinkle metrics
-                this.alpha += this.glowFactor;
-                if (this.alpha > 1 || this.alpha < 0.2) {
-                    this.glowFactor = -this.glowFactor;
-                }
-
-                // Screen boundary collision handler reboots
-                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-                    this.resetProperties();
-                    if (Math.random() > 0.5) {
-                        this.x = Math.random() > 0.5 ? 0 : canvas.width;
-                    } else {
-                        this.y = Math.random() > 0.5 ? 0 : canvas.height;
-                    }
-                }
-            }
-
-            renderStar() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
-                ctx.fill();
-            }
-        }
-
-        // Initialize particle array nodes
-        for (let i = 0; i < maxStarsCount; i++) {
-            starsArray.push(new CosmicStarNode());
-        }
-
-        // Main Continuous Execution Render Loop Frame
-        function processAnimationStep() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            if (pointer.activeStrength > 0) pointer.activeStrength--;
-
-            for (let i = 0; i < starsArray.length; i++) {
-                starsArray[i].updateVelocity();
-                starsArray[i].renderStar();
-            }
-            
-            requestAnimationFrame(processAnimationStep);
-        }
-        requestAnimationFrame(processAnimationStep);
-    })();
-</script>
