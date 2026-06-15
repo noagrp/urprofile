@@ -1,0 +1,188 @@
+<style>
+    /* Import Premium Romantic and Sans-Serif Fonts directly into the stylesheet */
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap');
+
+    /* 1. LOVELY */
+    @keyframes romanticGlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* 2. FLOATING HEARTS CHANGING COLOR EFFECT */
+    @keyframes risingHearts {
+        0% { background-position: 0 0; filter: hue-rotate(0deg); }
+        50% { filter: hue-rotate(180deg); }
+        100% { background-position: 0 -160px; filter: hue-rotate(360deg); }
+    }
+
+    .p-body-wrap { 
+        min-height: 100vh; 
+        /* Rich Pink & Deep Violet Gradient Base */
+        background: linear-gradient(-45deg, #2c001e, #ff4da6, #7a004d, #ff85c2);
+        background-size: 400% 400%;
+        animation: romanticGlow 14s ease infinite;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; 
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        box-sizing: border-box;
+        padding: 40px 20px 60px 20px;
+        color: #ffffff;
+        width: 100%;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    /* Transparent layer handling random floating loves changing color */
+    .p-body-wrap::before {
+        content: "♥";
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        color: rgba(255, 255, 255, 0.15);
+        font-size: 24px;
+        line-height: 40px;
+        letter-spacing: 30px;
+        animation: risingHearts 7s linear infinite;
+        pointer-events: none;
+        z-index: 1;
+        text-shadow: 30px 60px rgba(255, 192, 203, 0.1), 60px 120px rgba(219, 112, 147, 0.1);
+    }
+
+    /* 3. GLASS HUD CONTAINER */
+    .p-container { 
+        max-width: 650px; 
+        width: 100%; 
+        background: rgba(44, 0, 30, 0.6);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        padding: 45px 30px; 
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 35px; /* Softer rounded look */
+        text-align: center;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+        box-sizing: border-box;
+        margin-top: 20px;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* 4. PROFILE IMAGE */
+    .p-pfp { 
+        width: 120px; 
+        height: 120px; 
+        border-radius: 50%; 
+        margin: 0 auto 25px; 
+        object-fit: cover; 
+        display: none; /* Managed dynamically by index.html */
+        border: 4px solid #ffffff;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    /* 5. TYPOGRAPHY */
+    .p-name { 
+        font-family: 'Comfortaa', cursive;
+        font-size: clamp(1.8rem, 8vw, 2.2rem); 
+        font-weight: 700; 
+        color: #ffffff;
+        margin: 0 0 8px 0;
+        letter-spacing: -0.5px;
+        text-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+    }
+
+    .p-bio { 
+        font-size: 0.95rem; 
+        color: #ffe6f2; 
+        line-height: 1.5; 
+        margin-bottom: 35px;
+        font-weight: 400;
+        word-wrap: break-word;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        padding-top: 20px;
+    }
+
+    /* 6. SOFT ROMANTIC BUTTONS */
+    .p-links { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 12px; 
+    }
+
+    .p-link-btn { 
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #ffffff; 
+        padding: 16px; 
+        text-decoration: none; 
+        font-weight: 700; 
+        font-size: 0.9rem;
+        border-radius: 18px;
+        transition: all 0.3s ease;
+        display: block;
+    }
+
+    .p-link-btn:hover { 
+        background: #ffffff;
+        color: #2c001e; 
+        transform: scale(1.03);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+
+    /* 7. PILLOW SOCIAL BUTTONS */
+    .p-socials { 
+        margin-top: 35px; 
+        display: flex; 
+        justify-content: center; 
+        gap: 8px; 
+        flex-wrap: wrap;
+    }
+
+    .p-social-icon { 
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        text-decoration: none; 
+        font-size: 0.75rem; 
+        font-weight: 700;
+        padding: 10px 18px;
+        border-radius: 50px; 
+        text-transform: uppercase;
+        white-space: nowrap;
+        transition: 0.2s ease;
+    }
+
+    .p-social-icon:hover { 
+        background: #ffffff;
+        color: #2c001e;
+    }
+    
+    .p-social-icon::before { content: ""; }
+    .p-social-icon::after { content: ""; }
+
+    /* 8. EMBEDDED VIDEO AREA */
+    .p-yt {
+        margin-top: 30px;
+        display: none; 
+    }
+
+    .p-yt iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 20px;
+        border: none;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+</style>
+
+<div class="p-body-wrap">
+    <div class="p-container">
+        <img class="p-pfp" src="" alt="Profile">
+        <h1 class="p-name"></h1>
+        <div class="p-bio"></div>
+        
+        <div class="p-links"></div>
+        <div class="p-yt"></div>
+        <div class="p-socials"></div>
+    </div>
+</div>

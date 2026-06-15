@@ -1,0 +1,305 @@
+<style>
+    /* Import High-Performance Dashboard and Tech Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
+
+    /* 1. System State Oscillations & Warning Indicator Blinks */
+    @keyframes redlineGlow {
+        0% { box-shadow: 0 20px 40px rgba(255, 40, 0, 0.15), 0 0 0 1px rgba(255, 40, 0, 0.1); }
+        50% { box-shadow: 0 25px 50px rgba(255, 40, 0, 0.35), 0 0 20px rgba(255, 40, 0, 0.4); border-color: #ff2800; }
+        100% { box-shadow: 0 20px 40px rgba(255, 40, 0, 0.15), 0 0 0 1px rgba(255, 40, 0, 0.1); }
+    }
+
+    @keyframes buttonPulse {
+        0% { box-shadow: 0 0 0 0 rgba(255, 40, 0, 0.7); }
+        70% { box-shadow: 0 0 0 15px rgba(255, 40, 0, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 40, 0, 0); }
+    }
+
+    .p-body-wrap { 
+        min-height: 100vh; 
+        background-color: #0d0d0f;
+        background-image: linear-gradient(rgba(255, 40, 0, 0.01) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(255, 40, 0, 0.01) 1px, transparent 1px);
+        background-size: 30px 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; 
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        box-sizing: border-box;
+        padding: 40px 20px 60px 20px;
+        color: #ffffff;
+        width: 100%;
+    }
+
+    /* 2. DASHBOARD SHELL (Starts in Standby/Off mode) */
+    .p-container { 
+        max-width: 650px; 
+        width: 100%; 
+        background: #111113; 
+        padding: 50px 30px; 
+        border: 2px solid #27272a; /* Cold steel standby border color */
+        border-radius: 4px; 
+        text-align: center;
+        box-sizing: border-box;
+        margin-top: 20px;
+        position: relative;
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* System Status Ribbon Badge */
+    .p-container::before {
+        content: "SYS STANDBY";
+        id: "telemetry-status-ribbon";
+        position: absolute;
+        top: -10px;
+        left: 20px;
+        background: #27272a;
+        color: #a1a1aa;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 0.65rem;
+        font-weight: 900;
+        padding: 2px 10px;
+        letter-spacing: 1.5px;
+        transition: all 0.4s ease;
+    }
+
+    /* IGNITION STATE ACTIVE MODIFIERS */
+    .p-container.engine-active {
+        border-color: #ff2800;
+        animation: redlineGlow 2.5s ease-in-out infinite;
+    }
+    .p-container.engine-active::before {
+        content: "LIVE TELEMETRY";
+        background: #ff2800;
+        color: #000000;
+    }
+
+    /* 3. MINIMALIST ENGINE TOGGLE BUTTON SWITCH */
+    .ignition-switch-box {
+        margin-bottom: 35px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .start-stop-btn {
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        border: 4px solid #27272a;
+        background: #18181b;
+        color: #a1a1aa;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 0.7rem;
+        font-weight: 900;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.2;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        user-select: none;
+    }
+
+    /* Engine Off State Pulsing Indicator */
+    .start-stop-btn.pulse-ready {
+        border-color: rgba(255, 40, 0, 0.4);
+        color: #ff2800;
+        animation: buttonPulse 2s infinite;
+    }
+
+    /* Engine Running State Indicator Modifier */
+    .start-stop-btn.ignited {
+        background: #ff2800;
+        border-color: #ffffff;
+        color: #000000;
+        text-shadow: none;
+        box-shadow: 0 0 20px rgba(255, 40, 0, 0.6);
+    }
+
+    .switch-label {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: #52525b;
+        text-transform: uppercase;
+        transition: color 0.3s ease;
+    }
+    .p-container.engine-active .switch-label { color: #ff2800; }
+
+    /* 4. INSTRUMENT PANEL POWER MASKS */
+    .dashboard-gauge-panel {
+        opacity: 0.08;
+        filter: blur(1px) grayscale(100%);
+        pointer-events: none;
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .p-container.engine-active .dashboard-gauge-panel {
+        opacity: 1;
+        filter: none;
+        pointer-events: auto;
+    }
+
+    /* 5. AVATAR LAYOUT SHIELD */
+    .p-pfp { 
+        width: 115px; 
+        height: 115px; 
+        border-radius: 4px; 
+        margin: 0 auto 25px; 
+        object-fit: cover; 
+        display: none; /* Controlled by painting logic */
+        border: 2px solid #ff2800;
+        box-shadow: 0 0 15px rgba(255, 40, 0, 0.2);
+    }
+
+    /* 6. TYPOGRAPHY SYSTEM */
+    .p-name { 
+        font-family: 'Orbitron', sans-serif;
+        font-size: clamp(1.6rem, 7vw, 2.3rem); 
+        font-weight: 900; 
+        color: #ffffff;
+        margin: 0 0 12px 0;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-style: italic;
+        text-shadow: 2px 2px 0px #ff2800;
+    }
+
+    .p-bio { 
+        font-size: 0.9rem; 
+        color: #94a3b8; 
+        line-height: 1.6; 
+        margin-bottom: 35px;
+        font-weight: 400;
+        word-wrap: break-word;
+        border-top: 1px dashed #27272a;
+        padding-top: 20px;
+    }
+
+    /* 7. ASYMMETRICAL TRIM HYPER-BUTTON LINKS */
+    .p-links { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 14px; 
+    }
+
+    .p-link-btn { 
+        background: #18181b;
+        border: 1px solid #27272a;
+        border-left: 4px solid #ff2800; 
+        color: #ffffff; 
+        padding: 16px; 
+        text-decoration: none; 
+        font-weight: 700; 
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        transition: all 0.2s ease-in-out;
+        display: block;
+        text-align: left;
+    }
+
+    .p-link-btn:hover { 
+        background: #ff2800;
+        color: #0a0a0b; 
+        border-color: #ff2800;
+        transform: skewX(-4deg) translateX(4px); 
+        box-shadow: -4px 4px 0px #ffffff;
+    }
+
+    /* 8. CLUSTER FOOTER PILLOW SOCIALS */
+    .p-socials { 
+        margin-top: 40px; 
+        display: flex; 
+        justify-content: center; 
+        gap: 10px; 
+        flex-wrap: wrap;
+    }
+
+    .p-social-icon { 
+        background: transparent;
+        border: 1px solid #ff2800;
+        color: #ff2800;
+        text-decoration: none; 
+        font-size: 0.75rem; 
+        font-weight: 700;
+        padding: 8px 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.2s ease;
+    }
+
+    .p-social-icon:hover { 
+        background: rgba(255, 40, 0, 0.1);
+        color: #ffffff;
+    }
+    
+    .p-social-icon::before { content: "[ "; }
+    .p-social-icon::after { content: " ]"; }
+
+    /* 9. VIDEO SCREEN HOUSING */
+    .p-yt {
+        margin-top: 30px;
+        display: none; 
+    }
+
+    .p-yt iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: 2px solid #27272a;
+        border-top-color: #ff2800;
+    }
+</style>
+
+<div class="p-body-wrap">
+    <div class="p-container" id="fRed-core-shell">
+        
+        <div class="ignition-switch-box">
+            <div class="start-stop-btn pulse-ready" id="ignition-hardware-node" onclick="runIgnitionToggle()">
+                ENGINE<br><span style="font-size:0.55rem;font-weight:900;">START</span>
+            </div>
+            <div class="switch-label">Ignition Control</div>
+        </div>
+
+        <div class="dashboard-gauge-panel" id="fRed-gauges-cluster">
+            <img class="p-pfp" src="" alt="Telemetry Frame">
+            <h1 class="p-name"></h1>
+            <div class="p-bio"></div>
+            
+            <div class="p-links"></div>
+            <div class="p-yt"></div>
+            <div class="p-socials"></div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // Self-contained system engine executive controller block
+    function runIgnitionToggle() {
+        const shell = document.getElementById('fRed-core-shell');
+        const btn = document.getElementById('ignition-hardware-node');
+        
+        const isCurrentlyActive = shell.classList.contains('engine-active');
+        
+        if (!isCurrentlyActive) {
+            // Powering On sequence execution
+            shell.classList.add('engine-active');
+            btn.classList.remove('pulse-ready');
+            btn.classList.add('ignited');
+            btn.innerHTML = 'ENGINE<br><span style="font-size:0.55rem;font-weight:900;">STOP</span>';
+        } else {
+            // Shutdown execution
+            shell.classList.remove('engine-active');
+            btn.classList.remove('ignited');
+            btn.classList.add('pulse-ready');
+            btn.innerHTML = 'ENGINE<br><span style="font-size:0.55rem;font-weight:900;">START</span>';
+        }
+    }
+</script>
