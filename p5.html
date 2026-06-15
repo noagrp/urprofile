@@ -1,0 +1,204 @@
+<style>
+    /* Import Premium Serifs and Clean San-Serifs */
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap');
+
+    /* 1. Deep Radiant Aura Background & Floating Gold Particles */
+    @keyframes goldenGlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    @keyframes particleUpward {
+        0% { background-position: 0 0; }
+        100% { background-position: 0 -120px; }
+    }
+
+    @keyframes gentlePulse {
+        0% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.15), inset 0 0 15px rgba(212, 175, 55, 0.05); }
+        50% { box-shadow: 0 0 35px rgba(212, 175, 55, 0.35), inset 0 0 25px rgba(212, 175, 55, 0.15); }
+        100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.15), inset 0 0 15px rgba(212, 175, 55, 0.05); }
+    }
+
+    .p-body-wrap { 
+        min-height: 100vh; 
+        /* Deep luxurious gradient: Midnight Charcoal into Soft Crimson Hue */
+        background: linear-gradient(-45deg, #09090b, #181111, #110914, #09090b);
+        background-size: 400% 400%;
+        animation: goldenGlow 15s ease infinite;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; 
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        box-sizing: border-box;
+        padding: 40px 20px 60px 20px;
+        color: #f4f4f5;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Embedded Glowing Particle Grid Engine */
+    .p-body-wrap::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        /* Golden particle points rising upwards */
+        background-image: radial-gradient(circle at 4px 4px, rgba(212, 175, 55, 0.15) 1.5px, transparent 0);
+        background-size: 60px 60px;
+        animation: particleUpward 8s linear infinite;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    /* 2. Elevated Altar HUD Panel */
+    .p-container { 
+        max-width: 650px; 
+        width: 100%; 
+        background: rgba(18, 18, 24, 0.75);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 50px 35px; 
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        border-radius: 24px;
+        text-align: center;
+        box-sizing: border-box;
+        margin-top: 20px;
+        position: relative;
+        z-index: 2;
+        animation: gentlePulse 4s ease-in-out infinite;
+    }
+
+    /* Decorative framing details */
+    .p-container::before, .p-container::after {
+        content: "";
+        position: absolute;
+        width: 12px; height: 12px;
+        border: 1px solid #d4af37;
+    }
+    .p-container::before { top: 15px; left: 15px; border-right: none; border-bottom: none; }
+    .p-container::after { top: 15px; right: 15px; border-left: none; border-bottom: none; }
+
+    /* 3. Image Frame & Profile Circle */
+    .p-pfp { 
+        width: 115px; 
+        height: 115px; 
+        border-radius: 50%; 
+        margin: 0 auto 25px; 
+        object-fit: cover; 
+        display: none; 
+        border: 2px solid #d4af37;
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    }
+
+    /* 4. Elegant Typography */
+    .p-name { 
+        font-family: 'Cinzel', serif;
+        font-size: clamp(1.6rem, 7vw, 2.1rem); 
+        font-weight: 700; 
+        color: #ffffff;
+        margin: 0 0 12px 0;
+        letter-spacing: 3px;
+        word-wrap: break-word;
+        text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    }
+
+    .p-bio { 
+        font-size: 0.9rem; 
+        color: #d1d1d6; 
+        line-height: 1.6; 
+        margin-bottom: 35px;
+        font-weight: 300;
+        border-top: 1px solid rgba(212, 175, 55, 0.15);
+        padding-top: 20px;
+        word-wrap: break-word;
+        letter-spacing: 0.5px;
+    }
+
+    /* 5. Polished Gold Leaf Button Bars */
+    .p-links { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 14px; 
+    }
+
+    .p-link-btn { 
+        background: linear-gradient(to right, rgba(212, 175, 55, 0.02), rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.02));
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        color: #e5c158; 
+        padding: 16px; 
+        text-decoration: none; 
+        font-weight: 600; 
+        font-size: 0.85rem;
+        border-radius: 12px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        display: block;
+    }
+
+    .p-link-btn:hover { 
+        background: #d4af37;
+        color: #0d001a; 
+        border-color: #d4af37;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35);
+    }
+
+    /* 6. Social Icon Strip Selection */
+    .p-socials { 
+        margin-top: 40px; 
+        display: flex; 
+        justify-content: center; 
+        gap: 12px; 
+        flex-wrap: wrap;
+    }
+
+    .p-social-icon { 
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        color: #d1d1d6;
+        text-decoration: none; 
+        font-size: 0.75rem; 
+        font-weight: 600;
+        padding: 10px 20px;
+        border-radius: 30px; 
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+    }
+
+    .p-social-icon:hover { 
+        background: rgba(212, 175, 55, 0.12);
+        color: #ffffff;
+        border-color: #d4af37;
+        box-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
+    }
+
+    /* 7. Embedded Media Box */
+    .p-yt {
+        margin-top: 35px;
+        display: none; 
+    }
+
+    .p-yt iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 14px;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+</style>
+
+<div class="p-body-wrap">
+    <div class="p-container">
+        <img class="p-pfp" src="" alt="Profile">
+        <h1 class="p-name"></h1>
+        <div class="p-bio"></div>
+        
+        <div class="p-links"></div>
+        <div class="p-yt"></div>
+        <div class="p-socials"></div>
+    </div>
+</div>
