@@ -2,14 +2,7 @@
     /* Import Premium Romantic and Sans-Serif Fonts directly into the stylesheet */
     @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap');
 
-    /* 1. LOVELY */
-    @keyframes romanticGlow {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    /* 2. FLOATING HEARTS CHANGING COLOR EFFECT */
+    /* 1. FLOATING HEARTS CHANGING COLOR EFFECT */
     @keyframes risingHearts {
         0% { background-position: 0 0; filter: hue-rotate(0deg); }
         50% { filter: hue-rotate(180deg); }
@@ -18,10 +11,8 @@
 
     .p-body-wrap { 
         min-height: 100vh; 
-        /* Rich Pink & Deep Violet Gradient Base */
+        /* Rich Pink & Deep Violet Gradient Base - Static, no movement lines */
         background: linear-gradient(-45deg, #2c001e, #ff4da6, #7a004d, #ff85c2);
-        background-size: 400% 400%;
-        animation: romanticGlow 14s ease infinite;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -44,13 +35,14 @@
         font-size: 24px;
         line-height: 40px;
         letter-spacing: 30px;
-        animation: risingHearts 7s linear infinite;
+        /* Hearts floating cleanly straight up */
+        animation: risingHearts 8s linear infinite;
         pointer-events: none;
         z-index: 1;
         text-shadow: 30px 60px rgba(255, 192, 203, 0.1), 60px 120px rgba(219, 112, 147, 0.1);
     }
 
-    /* 3. GLASS HUD CONTAINER */
+    /* 2. GLASS HUD CONTAINER */
     .p-container { 
         max-width: 650px; 
         width: 100%; 
@@ -68,7 +60,7 @@
         z-index: 2;
     }
 
-    /* 4. PROFILE IMAGE */
+    /* 3. PROFILE IMAGE */
     .p-pfp { 
         width: 120px; 
         height: 120px; 
@@ -80,7 +72,7 @@
         box-shadow: 0 10px 20px rgba(0,0,0,0.15);
     }
 
-    /* 5. TYPOGRAPHY */
+    /* 4. TYPOGRAPHY */
     .p-name { 
         font-family: 'Comfortaa', cursive;
         font-size: clamp(1.8rem, 8vw, 2.2rem); 
@@ -102,7 +94,7 @@
         padding-top: 20px;
     }
 
-    /* 6. SOFT ROMANTIC BUTTONS */
+    /* 5. SOFT ROMANTIC BUTTONS */
     .p-links { 
         display: flex; 
         flex-direction: column; 
@@ -129,7 +121,7 @@
         box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
     }
 
-    /* 7. PILLOW SOCIAL BUTTONS */
+    /* 6. PILLOW SOCIAL BUTTONS */
     .p-socials { 
         margin-top: 35px; 
         display: flex; 
@@ -160,7 +152,7 @@
     .p-social-icon::before { content: ""; }
     .p-social-icon::after { content: ""; }
 
-    /* 8. EMBEDDED VIDEO AREA */
+    /* 7. EMBEDDED VIDEO AREA */
     .p-yt {
         margin-top: 30px;
         display: none; 
