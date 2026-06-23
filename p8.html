@@ -1,65 +1,169 @@
-/* 1. Environment: Fixed background with floating light orbs */
-.p-body-wrap { 
-    min-height: 100vh; 
-    background: radial-gradient(circle at 50% 50%, #1a2a3a 0%, #050505 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; 
-    padding: 40px 20px;
-    position: relative;
-    overflow: hidden;
-}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
 
-/* Floating Orb Effect - Replaces the 'scanner' rain */
-.p-body-wrap::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(circle at 20% 80%, rgba(0, 210, 255, 0.15) 0%, transparent 20%),
-        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 20%);
-    animation: floatOrbs 10s infinite alternate ease-in-out;
-    pointer-events: none;
-}
+    @keyframes neonTraceLoop {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
 
-/* 2. Glass Container */
-.p-container { 
-    position: relative;
-    z-index: 1;
-    max-width: 650px; 
-    width: 100%; 
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    padding: 45px 30px; 
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
+    @keyframes ambientWave {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
 
-/* 3. Image Shell */
-.p-pfp { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 25px; object-fit: cover; border: 2px solid rgba(255, 255, 255, 0.2); }
+    .p-body-wrap { 
+        min-height: 100vh; 
+        /* Light Gradient Base */
+        background: linear-gradient(-45deg, #f4f4f5, #e4e4e7, #fafafa, #f4f4f5);
+        background-size: 400% 400%;
+        animation: ambientWave 12s ease infinite;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; 
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        box-sizing: border-box;
+        padding: 40px 20px 60px 20px;
+        color: #18181b;
+        width: 100%;
+        position: relative;
+        overflow-x: hidden;
+    }
 
-/* 4. Text Shells */
-.p-name { font-size: 2rem; color: #ffffff; margin: 0 0 8px 0; font-family: sans-serif; }
-.p-bio { color: #aaaaaa; margin-bottom: 35px; }
+    /* Crisp matrix scanlines - inverted opacity */
+    .p-body-wrap::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        pointer-events: none;
+        z-index: 1;
+        background: linear-gradient(rgba(0, 0, 0, 0.005) 50%, rgba(255, 255, 255, 0.1) 50%);
+        background-size: 100% 4px;
+    }
 
-/* 5. Button Shells */
-.p-links { display: flex; flex-direction: column; gap: 12px; }
-.p-link-btn { 
-    background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #ffffff; padding: 16px; border-radius: 15px; display: block; text-decoration: none;
-}
+    /* 2. WHITE LIGHT BOX CONTAINER */
+    .p-container { 
+        max-width: 650px; 
+        width: 100%; 
+        background: #ffffff; 
+        padding: 50px 30px; 
+        border-radius: 12px;
+        text-align: center;
+        box-sizing: border-box;
+        margin-top: 20px;
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.05);
+        
+        border: 6px solid transparent;
+        background-image: linear-gradient(#ffffff, #ffffff), 
+                          linear-gradient(90deg, #d4d4d8, #a1a1aa, #d4d4d8, #e4e4e7, #d4d4d8);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        background-size: 100% 100%, 200% 200%;
+        animation: neonTraceLoop 5s linear infinite;
+    }
 
-/* 6. Social Shells */
-.p-socials { margin-top: 35px; display: flex; justify-content: center; gap: 15px; }
-.p-social-icon { color: #888888; text-decoration: none; font-size: 0.8rem; }
+    /* Top Technical Sub-Label Frame */
+    .p-container::after {
+        content: "LIGHT-HUD";
+        position: absolute;
+        top: -14px;
+        left: 20px;
+        background: #ffffff;
+        color: #71717a;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 0.65rem;
+        font-weight: 900;
+        padding: 2px 10px;
+        letter-spacing: 1.5px;
+        border: 1px solid #e4e4e7;
+    }
 
-/* Animation: Slow drifting motion */
-@keyframes floatOrbs {
-    0% { transform: translateY(0) scale(1); }
-    100% { transform: translateY(-20px) scale(1.1); }
-}
+    /* 3. PROFILE INSTRUMENTS */
+    .p-pfp { 
+        width: 120px; height: 120px; border-radius: 4px; margin: 0 auto 25px; 
+        object-fit: cover; display: none; border: 1px solid #e4e4e7;
+    }
+
+    /* 4. TYPOGRAPHY SYSTEM */
+    .p-name { 
+        font-family: 'Orbitron', sans-serif;
+        font-size: clamp(1.6rem, 7vw, 2.3rem); 
+        font-weight: 900; 
+        color: #09090b;
+        margin: 0 0 12px 0;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-style: italic;
+    }
+
+    .p-bio { 
+        font-size: 0.95rem; 
+        color: #52525b; 
+        line-height: 1.6; 
+        margin-bottom: 35px;
+        border-top: 1px dashed #e4e4e7;
+        padding-top: 20px;
+    }
+
+    /* 5. HOVER ACTION BUTTON LINKS */
+    .p-links { display: flex; flex-direction: column; gap: 14px; }
+    .p-link-btn { 
+        background: #fafafa;
+        border: 1px solid #e4e4e7;
+        border-left: 4px solid #18181b; 
+        color: #18181b; 
+        padding: 16px; 
+        text-decoration: none; 
+        font-weight: 700; 
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        transition: all 0.2s ease-in-out;
+        display: block;
+        text-align: left;
+    }
+
+    .p-link-btn:hover { 
+        background: #18181b;
+        color: #ffffff; 
+        border-color: #18181b;
+        transform: skewX(-3deg) translateX(4px); 
+        box-shadow: -4px 4px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 6. SOCIAL TILES */
+    .p-socials { margin-top: 40px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .p-social-icon { 
+        background: transparent;
+        border: 1px solid #d4d4d8;
+        color: #71717a;
+        text-decoration: none; 
+        font-size: 0.75rem; 
+        font-weight: 700;
+        padding: 8px 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.2s ease;
+    }
+    .p-social-icon:hover { background: #f4f4f5; border-color: #18181b; color: #18181b; }
+    .p-social-icon::before { content: "[ "; }
+    .p-social-icon::after { content: " ]"; }
+
+    /* 7. DOCK MEDIA AREA */
+    .p-yt { margin-top: 30px; display: none; }
+    .p-yt iframe { width: 100%; aspect-ratio: 16 / 9; border: 1px solid #e4e4e7; border-radius: 4px; }
+</style>
+
+<div class="p-body-wrap">
+    <div class="p-container">
+        <img class="p-pfp" src="" alt="Avatar Frame">
+        <h1 class="p-name"></h1>
+        <div class="p-bio"></div>
+        <div class="p-links"></div>
+        <div class="p-yt"></div>
+        <div class="p-socials"></div>
+    </div>
+</div>
