@@ -13,7 +13,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
-:root{--primary:#2563eb;--primary2:#1d4ed8;--bg:#f4f7fb;--text:#1e293b;--muted:#64748b;--line:#e2e8f0;--card:#fff}*{box-sizing:border-box}html{background:var(--bg)}body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);margin:0;min-height:100vh}button,input,textarea,select{font:inherit}#manager-root{display:block;width:100%;max-width:760px;margin:auto;padding:18px}#profile-root{display:none;width:100%}#status-wrap{display:none;text-align:center;padding-top:40vh;color:var(--muted)}.loader{border:3px solid var(--line);border-top-color:var(--primary);border-radius:50%;width:30px;height:30px;animation:spin 1s linear infinite;margin:0 auto 12px}@keyframes spin{to{transform:rotate(360deg)}}.container{width:100%;background:var(--card);padding:24px;border-radius:18px;box-shadow:0 10px 35px rgba(15,23,42,.08)}h1{margin:0;text-align:center;font-size:clamp(1.65rem,5vw,2.1rem)}.subtitle{text-align:center;color:var(--muted);font-size:.9rem;margin:7px 0 22px}.section{border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}.section h2{font-size:1rem;margin:0 0 10px}.edit-section{background:#f8fbff}label{display:block;font-weight:650;margin-top:13px;font-size:.84rem}input,textarea,select{width:100%;padding:12px 13px;margin-top:5px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;color:var(--text);outline:none}input:focus,textarea:focus,select:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}textarea{resize:vertical}.hint{display:block;font-size:.72rem;color:var(--muted);margin-top:5px}.btn{width:100%;min-height:46px;padding:12px 14px;border:none;border-radius:10px;font-weight:750;cursor:pointer;margin-top:10px}.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primary2)}.btn-outline{background:#fff;border:1px solid var(--primary);color:var(--primary)}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.form-group{min-width:0}#status-msg{font-weight:650;padding:11px 12px;border-radius:9px;display:none;margin:0 0 14px;line-height:1.4;overflow-wrap:anywhere}.success{background:#dcfce7;color:#166534}.error{background:#fee2e2;color:#991b1b}.neutral{background:#eff6ff;color:#1e40af}details.form-card{border:1px solid var(--line);border-radius:14px;margin-bottom:12px;background:#fff;overflow:hidden}details.form-card>summary{cursor:pointer;list-style:none;padding:16px 18px;font-weight:800;display:flex;justify-content:space-between;align-items:center}details.form-card>summary::-webkit-details-marker{display:none}details.form-card>summary::after{content:'+';font-size:1.25rem;color:var(--muted)}details.form-card[open]>summary::after{content:'−'}details.form-card[open]>summary{border-bottom:1px solid var(--line)}.card-body{padding:4px 18px 18px}.preview-box{margin-top:14px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#f8fafc}.preview-head{padding:9px 12px;font-size:.76rem;font-weight:750;color:var(--muted);border-bottom:1px solid var(--line);display:flex;justify-content:space-between}.preview-frame{display:block;width:100%;height:360px;border:0;background:#fff}.save-bar{position:sticky;bottom:0;margin:14px -8px -8px;padding:8px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);z-index:5}.p-footer-disclaimer{text-align:justify;margin-top:22px;font-size:.78rem;line-height:1.55;color:var(--muted)}@media(max-width:640px){#manager-root{padding:0}.container{border-radius:0;min-height:100vh;padding:18px}.row{grid-template-columns:1fr}.section{padding:14px}.preview-frame{height:300px}details.form-card>summary{padding:15px}.card-body{padding:2px 15px 16px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.loader{animation:none}}
+:root{--primary:#2563eb;--primary2:#1d4ed8;--bg:#f4f7fb;--text:#1e293b;--muted:#64748b;--line:#e2e8f0;--card:#fff}*{box-sizing:border-box}html{background:var(--bg)}body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);margin:0;min-height:100vh}button,input,textarea,select{font:inherit}#manager-root{display:block;width:100%;max-width:760px;margin:auto;padding:18px}#profile-root{display:none;width:100%}#status-wrap{display:none;text-align:center;padding-top:40vh;color:var(--muted)}.loader{border:3px solid var(--line);border-top-color:var(--primary);border-radius:50%;width:30px;height:30px;animation:spin 1s linear infinite;margin:0 auto 12px}@keyframes spin{to{transform:rotate(360deg)}}.container{width:100%;background:var(--card);padding:24px;border-radius:18px;box-shadow:0 10px 35px rgba(15,23,42,.08)}h1{margin:0;text-align:center;font-size:clamp(1.65rem,5vw,2.1rem)}.subtitle{text-align:center;color:var(--muted);font-size:.9rem;margin:7px 0 22px}.section{border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}.section h2{font-size:1rem;margin:0 0 10px}.edit-section{background:#f8fbff}label{display:block;font-weight:650;margin-top:13px;font-size:.84rem}input,textarea,select{width:100%;padding:12px 13px;margin-top:5px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;color:var(--text);outline:none}input:focus,textarea:focus,select:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.1)}input:disabled{background:#f1f5f9;color:#64748b}textarea{resize:vertical}.hint{display:block;font-size:.72rem;color:var(--muted);margin-top:5px}.btn{width:100%;min-height:46px;padding:12px 14px;border:none;border-radius:10px;font-weight:750;cursor:pointer;margin-top:10px}.btn:disabled{opacity:.6;cursor:not-allowed}.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover:not(:disabled){background:var(--primary2)}.btn-outline{background:#fff;border:1px solid var(--primary);color:var(--primary)}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.form-group{min-width:0}#status-msg{font-weight:650;padding:11px 12px;border-radius:9px;display:none;margin:0 0 14px;line-height:1.4;overflow-wrap:anywhere}.success{background:#dcfce7;color:#166534}.error{background:#fee2e2;color:#991b1b}.neutral{background:#eff6ff;color:#1e40af}#editor-wrap{display:none}details.form-card{border:1px solid var(--line);border-radius:14px;margin-bottom:12px;background:#fff;overflow:hidden}details.form-card>summary{cursor:pointer;list-style:none;padding:16px 18px;font-weight:800;display:flex;justify-content:space-between;align-items:center}details.form-card>summary::-webkit-details-marker{display:none}details.form-card>summary::after{content:'+';font-size:1.25rem;color:var(--muted)}details.form-card[open]>summary::after{content:'−'}details.form-card[open]>summary{border-bottom:1px solid var(--line)}.card-body{padding:4px 18px 18px}.preview-box{margin-top:14px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#f8fafc}.preview-head{padding:9px 12px;font-size:.76rem;font-weight:750;color:var(--muted);border-bottom:1px solid var(--line);display:flex;justify-content:space-between}.preview-frame{display:block;width:100%;height:360px;border:0;background:#fff}.save-bar{position:sticky;bottom:0;margin:14px -8px -8px;padding:8px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);z-index:5}.p-footer-disclaimer{text-align:justify;margin-top:22px;font-size:.78rem;line-height:1.55;color:var(--muted)}@media(max-width:640px){#manager-root{padding:0}.container{border-radius:0;min-height:100vh;padding:18px}.row{grid-template-columns:1fr}.section{padding:14px}.preview-frame{height:300px}details.form-card>summary{padding:15px}.card-body{padding:2px 15px 16px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.loader{animation:none}}
 </style>
 </head>
 <body>
@@ -22,11 +22,11 @@
 <div id="manager-root">
   <div class="container">
     <h1>UrProfile</h1>
-    <p class="subtitle">Create and manage your profile.</p>
+    <p class="subtitle">Manage your profile.</p>
     <div id="status-msg"></div>
 
     <div class="section edit-section" id="login-section">
-      <h2>Edit existing profile</h2>
+      <h2>Edit Profile</h2>
       <div class="row">
         <input type="text" id="login-slug" placeholder="Your slug" autocomplete="username">
         <input type="password" id="login-pass" placeholder="Password" autocomplete="current-password">
@@ -34,15 +34,14 @@
       <button class="btn btn-primary" id="load-btn" onclick="loadProfile()">Load for Editing</button>
     </div>
 
-    <div id="main-form">
-      <h2 id="form-title" style="font-size:1.1rem;margin:20px 0 12px">Create New Profile</h2>
-
+    <div id="editor-wrap">
+      <h2 id="form-title" style="font-size:1.1rem;margin:20px 0 12px">Edit Profile</h2>
       <details class="form-card" open>
         <summary>Profile & Design</summary>
         <div class="card-body">
           <div class="row">
-            <div class="form-group"><label>Slug</label><input type="text" id="slug" placeholder="my-link" autocomplete="off"></div>
-            <div class="form-group"><label>Password</label><input type="password" id="pass" autocomplete="new-password"></div>
+            <div class="form-group"><label>Slug</label><input type="text" id="slug" disabled></div>
+            <div class="form-group"><label>Password</label><input type="password" id="pass" disabled></div>
           </div>
           <label>Template</label>
           <select id="temp">
@@ -52,14 +51,13 @@
           <label>Bio</label><textarea id="bio" rows="3" maxlength="300" placeholder="Max 300 chars"></textarea>
           <label>Profile Image URL</label><input type="url" id="pfp" placeholder="https://example.com/photo.jpg">
           <label>YouTube ID</label><input type="text" id="yt_video" maxlength="11" placeholder="11-character ID only"><span class="hint">Example: dQw4w9WgXcQ</span>
-          <div class="preview-box"><div class="preview-head"><span>Live template preview</span><span id="preview-name">Design 01</span></div><iframe id="template-preview" class="preview-frame" src="p1.html" title="Template preview"></iframe></div>
+          <div class="preview-box"><div class="preview-head"><span>Template preview</span><span id="preview-name">Design 01</span></div><iframe id="template-preview" class="preview-frame" src="p1.html" title="Template preview"></iframe></div>
         </div>
       </details>
 
       <details class="form-card">
         <summary>Links</summary>
         <div class="card-body">
-          <span class="hint">Up to five buttons. Web links must use http:// or https://, or you can enter a normal domain and UrProfile will add https://.</span>
           <div class="row"><input type="text" id="link1_text" placeholder="Title"><input type="text" id="link1_url" placeholder="URL"></div>
           <div class="row"><input type="text" id="link2_text" placeholder="Title"><input type="text" id="link2_url" placeholder="URL"></div>
           <div class="row"><input type="text" id="link3_text" placeholder="Title"><input type="text" id="link3_url" placeholder="URL"></div>
@@ -71,14 +69,14 @@
       <details class="form-card">
         <summary>Socials</summary>
         <div class="card-body">
-          <div class="row"><div><label>Email</label><input type="email" id="email"></div><div><label>WhatsApp</label><input type="text" id="wa" placeholder="Country code + number"></div></div>
+          <div class="row"><div><label>Email</label><input type="email" id="email"></div><div><label>WhatsApp</label><input type="text" id="wa"></div></div>
           <div class="row"><div><label>Instagram</label><input type="text" id="ig"></div><div><label>Facebook</label><input type="text" id="fb"></div></div>
           <div class="row"><div><label>X / Twitter</label><input type="text" id="tw"></div><div><label>LinkedIn</label><input type="text" id="li"></div></div>
           <div><label>Phone</label><input type="tel" id="tel"></div>
         </div>
       </details>
 
-      <div class="save-bar"><button class="btn btn-primary" id="save-btn" onclick="submitData()">Save Profile</button><button class="btn btn-outline" onclick="window.location.href=window.location.pathname">Clear / New</button></div>
+      <div class="save-bar"><button class="btn btn-primary" id="save-btn" onclick="submitData()">Save Profile</button><button class="btn btn-outline" onclick="logoutEditor()">Close Editor</button></div>
     </div>
 
     <div class="p-footer-disclaimer"><b>Disclaimer</b><br>User profiles are created by independent individuals and may contain links to external websites. UrProfile does not monitor, endorse, or assume liability for third-party content.</div>
@@ -88,81 +86,25 @@
 const API_URL="https://script.google.com/macros/s/AKfycbwmSwq2K_xX6qCWfIZNHzeJzTgUuhoX7nJooe3ZWv00NhVed-q7LBxegHzKKhuKGcPmZA/exec";
 const fields=['slug','pass','temp','name','bio','pfp','yt_video','link1_text','link1_url','link2_text','link2_url','link3_text','link3_url','link4_text','link4_url','link5_text','link5_url','ig','wa','fb','li','tw','tel','email'];
 const $=id=>document.getElementById(id);
-
-$('slug').addEventListener('input',function(){this.value=this.value.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'')});
-
-function normalizeWebUrl(raw){
-  const value=(raw||'').trim();
-  if(!value)return null;
-  if(/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(value)&&!/^https?:/i.test(value))return null;
-  const candidate=/^https?:\/\//i.test(value)?value:'https://'+value;
-  try{const url=new URL(candidate);return ['http:','https:'].includes(url.protocol)?url.href:null}catch{return null}
-}
+let authenticatedSlug='';
+let authenticatedPass='';
+function normalizeWebUrl(raw){const value=(raw||'').trim();if(!value)return null;if(/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(value)&&!/^https?:/i.test(value))return null;const candidate=/^https?:\/\//i.test(value)?value:'https://'+value;try{const url=new URL(candidate);return['http:','https:'].includes(url.protocol)?url.href:null}catch{return null}}
 function cleanUser(v){return(v||'').trim().replace(/^@/,'')}
-function safeYouTubeId(value){const v=(value||'').trim();return /^[A-Za-z0-9_-]{11}$/.test(v)?v:''}
+function safeYouTubeId(value){const v=(value||'').trim();return/^[A-Za-z0-9_-]{11}$/.test(v)?v:''}
+function showStatus(msg,type){const s=$('status-msg');s.textContent=msg;s.className=type;s.style.display='block'}
+function setBusy(which,on){const b=$(which==='load'?'load-btn':'save-btn');if(b){b.disabled=on;b.textContent=on?(which==='load'?'Loading...':'Saving...'):(which==='load'?'Load for Editing':'Save Profile')}}
+function updatePreview(){const temp=/^p[1-8]$/.test($('temp').value)?$('temp').value:'p1';$('template-preview').src=`${temp}.html`;$('preview-name').textContent=$('temp').selectedOptions[0]?.textContent||temp}
+$('temp').addEventListener('change',updatePreview);
 
-async function checkRoute(){
-  const hash=window.location.hash;
-  if(!hash||!hash.startsWith('#/')){$('manager-root').style.display='block';$('profile-root').style.display='none';$('status-wrap').style.display='none';document.title='UrProfile';return}
-  const slug=decodeURIComponent(hash.replace('#/','').split('?')[0]||'');if(!slug)return;
-  $('manager-root').style.display='none';$('profile-root').style.display='none';$('status-wrap').style.display='block';$('msg').innerText='Loading profile...';
-  try{
-    const response=await fetch(`${API_URL}?u=${encodeURIComponent(slug)}`,{cache:'no-store'});if(!response.ok)throw new Error('Server error');
-    const result=await response.json();
-    if(!result.success){$('msg').innerText='Profile not found.';return}
-    const templateName=/^p[1-8]$/.test(result.data.temp)?result.data.temp:'p1';
-    const tResponse=await fetch(`./${templateName}.html`);if(!tResponse.ok)throw new Error('Template error');
-    $('profile-root').innerHTML=await tResponse.text();$('status-wrap').style.display='none';$('profile-root').style.display='block';paint(result.data);
-  }catch(e){$('msg').innerText='Error connecting to server.'}
-}
+async function checkRoute(){const hash=window.location.hash;if(!hash||!hash.startsWith('#/')){$('manager-root').style.display='block';$('profile-root').style.display='none';$('status-wrap').style.display='none';document.title='UrProfile';return}const slug=decodeURIComponent(hash.replace('#/','').split('?')[0]||'');if(!slug)return;$('manager-root').style.display='none';$('profile-root').style.display='none';$('status-wrap').style.display='block';$('msg').textContent='Loading profile...';try{const response=await fetch(`${API_URL}?u=${encodeURIComponent(slug)}&_=${Date.now()}`,{cache:'no-store'});if(!response.ok)throw new Error('Server error');const result=await response.json();if(!result.success){$('msg').textContent='Profile not found.';return}const templateName=/^p[1-8]$/.test(result.data.temp)?result.data.temp:'p1';const tResponse=await fetch(`./${templateName}.html`);if(!tResponse.ok)throw new Error('Template error');$('profile-root').innerHTML=await tResponse.text();$('status-wrap').style.display='none';$('profile-root').style.display='block';paint(result.data)}catch(e){$('msg').textContent='Error connecting to server.'}}
 
-function paint(data){
-  document.title=data.name||'UrProfile';
-  const name=document.querySelector('.p-name'),bio=document.querySelector('.p-bio'),pfp=document.querySelector('.p-pfp');
-  if(name)name.innerText=data.name||'';if(bio)bio.innerText=data.bio||'';
-  if(pfp&&data.pfp){const safe=normalizeWebUrl(data.pfp);if(safe){pfp.src=safe;pfp.style.display='block'}}
-  const linkList=document.querySelector('.p-links');
-  if(linkList){linkList.innerHTML='';for(let i=1;i<=5;i++){const txt=data[`link${i}_text`],href=normalizeWebUrl(data[`link${i}_url`]);if(txt&&href){const a=document.createElement('a');a.className='p-link-btn';a.innerText=txt;a.href=href;a.target='_blank';a.rel='noopener noreferrer';linkList.appendChild(a)}}}
-  const ytEl=document.querySelector('.p-yt'),vidId=safeYouTubeId(data.yt_video);if(ytEl&&vidId){const iframe=document.createElement('iframe');iframe.width='100%';iframe.height='250';iframe.src=`https://www.youtube-nocookie.com/embed/${vidId}`;iframe.frameBorder='0';iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';iframe.allowFullscreen=true;ytEl.innerHTML='';ytEl.appendChild(iframe);ytEl.style.display='block'}
-  const socialWrap=document.querySelector('.p-socials');
-  if(socialWrap){socialWrap.innerHTML='';const socials=[
-    ['wa','WhatsApp',v=>'https://wa.me/'+v.replace(/\D/g,'')],['ig','Instagram',v=>'https://instagram.com/'+encodeURIComponent(cleanUser(v))],['fb','Facebook',v=>'https://facebook.com/'+encodeURIComponent(cleanUser(v))],['li','LinkedIn',v=>'https://linkedin.com/in/'+encodeURIComponent(cleanUser(v))],['tw','X',v=>'https://x.com/'+encodeURIComponent(cleanUser(v))],['tel','Call',v=>'tel:'+v.replace(/[^+\d]/g,'')],['email','Email',v=>'mailto:'+v.trim()]
-  ];socials.forEach(([key,label,build])=>{if(data[key]){const a=document.createElement('a');a.href=build(data[key]);a.innerText=label;a.className='p-social-icon';a.target='_blank';a.rel='noopener noreferrer';socialWrap.appendChild(a)}})}
-}
+function paint(data){document.title=data.name||'UrProfile';const name=document.querySelector('.p-name'),bio=document.querySelector('.p-bio'),pfp=document.querySelector('.p-pfp');if(name)name.textContent=data.name||'';if(bio)bio.textContent=data.bio||'';if(pfp&&data.pfp){const safe=normalizeWebUrl(data.pfp);if(safe){pfp.src=safe;pfp.style.display='block'}}const linkList=document.querySelector('.p-links');if(linkList){linkList.innerHTML='';for(let i=1;i<=5;i++){const txt=data[`link${i}_text`],href=normalizeWebUrl(data[`link${i}_url`]);if(txt&&href){const a=document.createElement('a');a.className='p-link-btn';a.textContent=txt;a.href=href;a.target='_blank';a.rel='noopener noreferrer';linkList.appendChild(a)}}}const ytEl=document.querySelector('.p-yt'),vidId=safeYouTubeId(data.yt_video);if(ytEl&&vidId){const iframe=document.createElement('iframe');iframe.width='100%';iframe.height='250';iframe.src=`https://www.youtube-nocookie.com/embed/${vidId}`;iframe.frameBorder='0';iframe.allowFullscreen=true;ytEl.innerHTML='';ytEl.appendChild(iframe);ytEl.style.display='block'}const socialWrap=document.querySelector('.p-socials');if(socialWrap){socialWrap.innerHTML='';const socials=[['wa','WhatsApp',v=>'https://wa.me/'+v.replace(/\D/g,'')],['ig','Instagram',v=>'https://instagram.com/'+encodeURIComponent(cleanUser(v))],['fb','Facebook',v=>'https://facebook.com/'+encodeURIComponent(cleanUser(v))],['li','LinkedIn',v=>'https://linkedin.com/in/'+encodeURIComponent(cleanUser(v))],['tw','X',v=>'https://x.com/'+encodeURIComponent(cleanUser(v))],['tel','Call',v=>'tel:'+v.replace(/[^+\d]/g,'')],['email','Email',v=>'mailto:'+v.trim()]];socials.forEach(([key,label,build])=>{if(data[key]){const a=document.createElement('a');a.href=build(data[key]);a.textContent=label;a.className='p-social-icon';a.target='_blank';a.rel='noopener noreferrer';socialWrap.appendChild(a)}})}}
 
-async function loadProfile(){
-  const u=$('login-slug').value.trim(),p=$('login-pass').value;if(!u||!p)return showStatus('Slug & password required','error');
-  setBusy('load',true);showStatus('Loading...','neutral');
-  try{const res=await fetch(`${API_URL}?u=${encodeURIComponent(u)}&p=${encodeURIComponent(p)}`,{cache:'no-store'});if(!res.ok)throw new Error('Server error');const result=await res.json();if(result.success&&result.mode==='edit'){fields.forEach(f=>{if($(f))$(f).value=result.data[f]||''});$('form-title').innerText='Editing: '+result.data.slug;$('login-section').style.display='none';updatePreview();showStatus('Profile loaded.','success')}else showStatus('Could not load profile. Check slug and password.','error')}catch(e){showStatus('Connection error. Nothing was changed.','error')}finally{setBusy('load',false)}
-}
+async function loadProfile(){const u=$('login-slug').value.trim(),p=$('login-pass').value;if(!u||!p)return showStatus('Slug & password required','error');setBusy('load',true);showStatus('Loading...','neutral');try{const res=await fetch(`${API_URL}?u=${encodeURIComponent(u)}&p=${encodeURIComponent(p)}&_=${Date.now()}`,{cache:'no-store'});if(!res.ok)throw new Error('Server error');const result=await res.json();if(!(result.success&&result.mode==='edit'))return showStatus('Could not load profile. Check slug and password.','error');authenticatedSlug=result.data.slug||u;authenticatedPass=p;fields.forEach(f=>{if($(f))$(f).value=result.data[f]||''});$('slug').value=authenticatedSlug;$('pass').value=authenticatedPass;$('form-title').textContent='Editing: '+authenticatedSlug;$('login-section').style.display='none';$('editor-wrap').style.display='block';updatePreview();showStatus('Profile loaded.','success')}catch(e){showStatus('Connection error. Nothing was changed.','error')}finally{setBusy('load',false)}}
 
-function validatePayload(payload){
-  if(!payload.slug||!payload.pass)return 'Slug & password required.';
-  if(!/^[a-z0-9-]+$/.test(payload.slug))return 'Slug can only contain lowercase letters, numbers and hyphens.';
-  if(payload.pfp&&!normalizeWebUrl(payload.pfp))return 'Profile image URL must be a valid http/https address.';
-  if(payload.yt_video&&!safeYouTubeId(payload.yt_video))return 'YouTube ID must be exactly 11 valid characters.';
-  for(let i=1;i<=5;i++){const raw=payload[`link${i}_url`];if(raw&&!normalizeWebUrl(raw))return `Link ${i} must be a valid http/https address.`}
-  return '';
-}
-
-async function submitData(){
-  const payload={};fields.forEach(f=>{if($(f))payload[f]=$(f).value.trim()});const error=validatePayload(payload);if(error)return showStatus(error,'error');
-  setBusy('save',true);showStatus('Saving...','neutral');
-  try{const response=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});if(!response.ok)throw new Error('Server error');const result=await response.json();if(result&&result.success===false)throw new Error(result.message||'Save rejected');const userUrl=`https://noagrp.github.io/urprofile/#/${payload.slug}`;showStatus('Saved! '+userUrl,'success');window.scrollTo({top:0,behavior:'smooth'})}catch(e){showStatus('Save failed. Please check your connection and try again.','error')}finally{setBusy('save',false)}
-}
-
-function setBusy(which,busy){const btn=which==='save'?$('save-btn'):$('load-btn');if(!btn)return;btn.disabled=busy;btn.style.opacity=busy?'.65':'1';btn.textContent=busy?(which==='save'?'Saving...':'Loading...'):(which==='save'?'Save Profile':'Load for Editing')}
-function showStatus(msg,type){const s=$('status-msg');s.textContent=msg;s.className=type||'neutral';s.style.display='block'}
-
-function updatePreview(){
-  const frame=$('template-preview'),temp=$('temp').value;$('preview-name').textContent=$('temp').options[$('temp').selectedIndex].text.split(' - ')[0];if(!frame)return;
-  if(!frame.src.endsWith(temp+'.html')){frame.src=temp+'.html';return}
-  try{const doc=frame.contentDocument;if(!doc)return;const n=doc.querySelector('.p-name'),b=doc.querySelector('.p-bio'),img=doc.querySelector('.p-pfp'),links=doc.querySelector('.p-links');if(n)n.textContent=$('name').value||'Your Name';if(b)b.textContent=$('bio').value||'Your bio preview';if(img){const src=normalizeWebUrl($('pfp').value);if(src){img.src=src;img.style.display='block'}else img.style.display='none'}if(links){links.innerHTML='';for(let i=1;i<=2;i++){const text=$(`link${i}_text`).value||`Link ${i}`;const a=doc.createElement('a');a.className='p-link-btn';a.href='#';a.textContent=text;links.appendChild(a)}}}catch{}
-}
-$('template-preview').addEventListener('load',updatePreview);$('temp').addEventListener('change',updatePreview);['name','bio','pfp','link1_text','link2_text'].forEach(id=>$(id).addEventListener('input',updatePreview));
-
-window.addEventListener('hashchange',checkRoute);window.addEventListener('DOMContentLoaded',()=>{checkRoute();updatePreview()});
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+async function submitData(){if(!authenticatedSlug||!authenticatedPass)return showStatus('Load an existing profile first.','error');const payload={};fields.forEach(f=>{if($(f))payload[f]=$(f).value});payload.slug=authenticatedSlug;payload.pass=authenticatedPass;if(payload.pfp&&!normalizeWebUrl(payload.pfp))return showStatus('Profile image URL must be http or https.','error');for(let i=1;i<=5;i++){const raw=payload[`link${i}_url`];if(raw&&!normalizeWebUrl(raw))return showStatus(`Link ${i} has an invalid URL.`,'error')}if(payload.yt_video&&!safeYouTubeId(payload.yt_video))return showStatus('YouTube ID must be 11 characters.','error');setBusy('save',true);showStatus('Saving...','neutral');try{const response=await fetch(API_URL,{method:'POST',body:JSON.stringify(payload)});if(!response.ok)throw new Error('Server error');const result=await response.json();if(!result.success)throw new Error(result.error||'Save failed');showStatus('Profile saved.','success')}catch(e){showStatus(e.message||'Save failed. Nothing was changed.','error')}finally{setBusy('save',false)}}
+function logoutEditor(){authenticatedSlug='';authenticatedPass='';$('editor-wrap').style.display='none';$('login-section').style.display='block';$('login-pass').value='';showStatus('Editor closed.','neutral')}
+window.addEventListener('hashchange',checkRoute);window.addEventListener('DOMContentLoaded',checkRoute);if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 </script>
 </body>
 </html>
