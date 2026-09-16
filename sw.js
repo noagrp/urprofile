@@ -1,4 +1,4 @@
-const CACHE='urprofile-v1';
+const CACHE='urprofile-v2';
 const ASSETS=[
   './','./index.html','./p1.html','./p2.html','./p3.html','./p4.html','./p5.html','./p6.html','./p7.html','./p8.html','./retired.html',
   './manifest.webmanifest','./favicon-32x32.png','./apple-touch-icon.png','./icon-192.png','./icon-512.png'
